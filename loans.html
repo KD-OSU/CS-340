@@ -29,7 +29,7 @@
             <a class="nav-link" href="materials.html" id="materials">Materials</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="loans.html" id="loans">Loans</a>
+            <a class="nav-link text-primary" href="loans.html" id="loans">Loans</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="holds.html" id="holds">Holds</a>
@@ -38,7 +38,42 @@
     </div>
   </nav>
 
-<!-- CONTENT GOES BELOW THIS LINE-->
+<!-- Table Data -- This will eventually come from db directly -->
+<div class="row gy-4 justify-content-center">
+  <div class="col-11">
+      <table class="table" id="dataTable">
+          <thead>
+              <tr>
+                  <th scope="col">loanID</th>
+                  <th scope="col">materialID</th>
+                  <th scope="col">patronID</th>
+                  <th scope="col">employeeID</th>
+                  <th scope="col">checkout</th>
+                  <th scope="col">due</th>
+                  <th scope="col">returned</th>
+              </tr>
+          </thead>
+          <tbody id="tableBody">
+              <tr id="id1">
+                  <td class="loanID">1</td>
+                  <td class="materialID">1</td>
+                  <td class="patronID">2</td>
+                  <td class="employeeID">1</td>
+                  <td class="checkout">10/20/2021</td>
+                  <td class="due">10/27/2021</td>
+                  <td class="returned">10/23/2021</td>
+              </tr>
+              <tr id="id2">
+                <td class="loanID">2</td>
+                  <td class="materialID">2</td>
+                  <td class="patronID">1</td>
+                  <td class="employeeID"></td>
+                  <td class="checkout">10/26/2021</td>
+                  <td class="due">11/03/2021</td>
+                  <td class="returned"></td>
+              </tr>
+          </tbody>
+      </table>
 
 
 </body>

@@ -23,7 +23,7 @@
               <a class="nav-link" href="patrons.html" id="patrons">Patrons</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="employees.html" id="employees">Employees</a>
+            <a class="nav-link text-primary" href="employees.html" id="employees">Employees</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="materials.html" id="materials">Materials</a>
@@ -38,7 +38,37 @@
     </div>
   </nav>
 
-<!-- CONTENT GOES BELOW THIS LINE-->
+<!-- Table Data -- This will eventually come from db directly -->
+<div class="row gy-4 justify-content-center">
+  <div class="col-11">
+      <table class="table" id="dataTable">
+          <thead>
+              <tr>
+                  <th scope="col">employeeID</th>
+                  <th scope="col">first name</th>
+                  <th scope="col">last name</th>
+                  <th scope="col">position</th>
+                  <th scope="col">startdate</th>
+                  
+                </tr>
+          </thead>
+          <tbody id="tableBody">
+              <tr id="id1">
+                  <td class="employeeID">1</td>
+                  <td class="fName">Minerva</td>
+                  <td class="lName">McGonagall</td>
+                  <td class="position">head librarian</td>
+                  <td class="startdate">08/23/1900</td>
+              </tr>
+              <tr id="id2">
+                <td class="employeeID">2</td>
+                <td class="fName">Hermione</td>
+                <td class="lName">Granger</td>
+                <td class="position">intern</td>
+                <td class="startdate">01/18/1990</td>
+            </tr>
+          </tbody>
+      </table>
 
 
 </body>
