@@ -1,0 +1,23 @@
+{
+  "name": "allcaps-library",
+  "version": "1.0.0",
+  "description": "A web interface for a backend MySQL database of a library",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KD-OSU/CS-340.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KD-OSU/CS-340/issues"
+  },
+  "homepage": "https://github.com/KD-OSU/CS-340#readme"
+}
