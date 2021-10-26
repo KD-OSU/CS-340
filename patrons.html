@@ -20,7 +20,7 @@
             <a class="nav-link" href="index.html" id="home">Home</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="patrons.html" id="patrons">Patrons</a>
+              <a class="nav-link text-primary" href="patrons.html" id="patrons">Patrons</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="employees.html" id="employees">Employees</a>
@@ -38,7 +38,38 @@
     </div>
   </nav>
 
-<!-- CONTENT GOES BELOW THIS LINE-->
+<!-- Table Data -- This will eventually come from db directly -->
+<div class="row gy-4 justify-content-center">
+  <div class="col-11">
+      <table class="table" id="dataTable">
+          <thead>
+              <tr>
+                  <th scope="col">patronID</th>
+                  <th scope="col">first name</th>
+                  <th scope="col">last name</th>
+                  <th scope="col">birth date</th>
+                  <th scope="col">flagged</th>
+              </tr>
+          </thead>
+          <tbody id="tableBody">
+              <tr id="id1">
+                  <td class="id">1</td>
+                  <td class="fName">Jonathan</td>
+                  <td class="lName">Strange</td>
+                  <td class="birthDate">01/08/1986</td>
+                  <td class="flagged">0</td>
+              </tr>
+              <tr id="id2">
+                  <td class="id">2</td>
+                  <td class="fName">Gilbert</td>
+                  <td class="lName" >Norrell</td>
+                  <td class="birthDate" >12/25/1960</td>
+                  <td class="flagged">1</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
 
 
 </body>
