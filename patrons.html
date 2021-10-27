@@ -71,8 +71,23 @@
   </div>
 </div>
 
-
 <!-- Form Content-- This will eventually need to submit somewhere for real-->
+<div class="border container w-50 bg-light align-items-center gy-5" id="searchPatron">
+  <form class="m-3" name="search">
+    <div class="row">
+      <div class="col">
+        <h5 class="text-left">Search for a patron</h5>
+        <div class="col-8">
+          <input type="text" id="search-name" class="form-control mb-2" placeholder="search by name">
+        </div>
+        <div class="col-4">
+          <button type="button" class="btn btn-secondary" id="search">Search</button>
+          <button type="button" class="btn btn-light" id="search-clear">Clear</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
 <div class="border container w-75 bg-light align-items-center gy-5" id="addPatron">
   <form class="m-3" name="add">
       <div class="row">
