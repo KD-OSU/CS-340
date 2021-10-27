@@ -75,6 +75,96 @@
           </tbody>
       </table>
 
+<!-- 'ADD' Form Content-- This will eventually need to submit somewhere for real-->
+<div class="border container w-75 bg-light align-items-center gy-5" id="addMaterial">
+  <form class="m-3" name="add">
+      <div class="row">
+          <div class="col">
+              <h5 class="text-center">Create new loan</h5>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-2">
+              <label class="form-label">MaterialID:</label>
+              <input type="text" id="add-materialID" class="form-control mb-2" placeholder="###">
+          </div>
+          <div class="col-2">
+              <label class="form-label">PatronID:</label>
+              <input type="text" id="add-patronID" class="form-control mb-2" placeholder="###">
+          </div>
+          <div class="col-2">
+              <label class="form-label">EmployeeID:</label>
+              <input type="number" id="add-employeeID" class="form-control mb-2" placeholder="###">
+          </div>
+        </div>
+      <div class="row">
+          <div class="col-3">
+              <label class="form-label">checkout:</label>
+              <input type="text" id="add-checkout" class="form-control mb-2" placeholder="##/##/####">
+          </div>
+          <div class="col-3">
+              <label class="form-label">due:</label>
+              <input type="text" id="add-due" class="form-control mb-2" placeholder="##/##/####">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-2">
+              <button type="button" class="btn btn-primary" id="submit">Submit</button>
+          </div>
+      </div>
+  </form>    
+</div>
+
+<!-- 'UPDATE' Form Content-- This will eventually need to submit somewhere for real-->
+<div class="border container w-75 bg-light align-items-center gy-5" id="addMaterial">
+  <form class="m-3" name="add">
+      <div class="row">
+          <div class="col">
+              <h5 class="text-center">Update existing loan</h5>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+          <label class="form-label">loanID:</label>
+          <input type="text" id="update-id" class="form-control mb-2" placeholder="###">
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-2">
+              <label class="form-label">MaterialID:</label>
+              <input type="text" id="update-materialID" class="form-control mb-2" placeholder="###">
+          </div>
+          <div class="col-2">
+              <label class="form-label">PatronID:</label>
+              <input type="text" id="update-patronID" class="form-control mb-2" placeholder="###">
+          </div>
+          <div class="col-2">
+              <label class="form-label">EmployeeID:</label>
+              <input type="number" id="update-employeeID" class="form-control mb-2" placeholder="###">
+          </div>
+        </div>
+      <div class="row">
+          <div class="col-3">
+              <label class="form-label">checkout:</label>
+              <input type="text" id="update-checkout" class="form-control mb-2" placeholder="##/##/####">
+          </div>
+          <div class="col-3">
+              <label class="form-label">due:</label>
+              <input type="text" id="update-due" class="form-control mb-2" placeholder="##/##/####">
+          </div>
+          <div class="col-3">
+            <label class="form-label">returned:</label>
+            <input type="text" id="update-returned" class="form-control mb-2" placeholder="##/##/####">
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-2">
+              <button type="button" class="btn btn-primary" id="submit">Update</button>
+          </div>
+      </div>
+  </form>    
+</div>
+
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
