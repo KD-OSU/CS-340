@@ -40,7 +40,7 @@
 <br>
 
 
-<!-- Form Content-- This will eventually need to submit somewhere for real-->
+<!-- ADD Form Content-- This will eventually need to submit somewhere for real-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="addMaterial">
     <form class="m-3" name="add">
         <div class="row">
@@ -70,7 +70,7 @@
             </div>
             <div class="col-2">
                 <label class="form-label">Total Copies:</label>
-                <input type="number" id="totalCopies" class="form-control mb-2">
+                <input type="number" id="totalCopies" class="form-control mb-2" placeholder="##">
             </div>
         </div>
         <div class="row">
@@ -87,6 +87,62 @@
     </form>    
 </div>
 <br>
+
+<!-- ADD Form Content-- This will eventually need to submit somewhere for real-->
+<div class="border container w-75 bg-light align-items-center gy-5" id="addMaterial">
+    <form class="m-3" name="add">
+        <div class="row">
+            <div class="col">
+                <h5 class="text-center">Update material</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <label class="form-label">MaterialID:</label>
+                <input type="text" id="update-id" class="form-control mb-2" placeholder="###">
+            </div>
+            <div class="col-4">
+                <label class="form-label">Title:</label>
+                <input type="text" id="update-title" class="form-control mb-2" placeholder="The Cat in the Hat" required>
+            </div>
+            <div class="col-4">
+                <label class="form-label">Author:</label>
+                <input type="text" id="update-author" class="form-control mb-2" placeholder="Dr. Seuss">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <label class="form-label">Medium:</label>
+                <input type="text" id="update-medium" class="form-control mb-2" placeholder="Book, DVD, Audiobook">
+            </div>
+            <div class="col-3">
+                <label class="form-label">Genre:</label>
+                <input type="text" id="update-genre" class="form-control mb-2" placeholder="Fiction, Non-fiction, etc.">
+            </div>
+            <div class="col-2">
+                <label class="form-label">Available Copies:</label>
+                <input type="number" id="update-availableCopies" class="form-control mb-2" placeholder="##">
+            </div>
+            <div class="col-2">
+                <label class="form-label">Total Copies:</label>
+                <input type="number" id="update-totalCopies" class="form-control mb-2" placeholder="##">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="restricted">
+                    <label class="form-check-label" for="restricted">Restricted?</label>
+                </div>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-primary" id="submit">Submit</button>
+            </div>
+        </div>
+    </form>    
+</div>
+<br>
+
 
 <!-- Table Data -- This will eventually come from db directly -->
 <div class="row gy-4 justify-content-center">
