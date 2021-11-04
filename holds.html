@@ -37,41 +37,7 @@
         </ul>
     </div>
   </nav>
-
-<!-- Table Data -- This will eventually come from db directly -->
-<div class="row gy-4 justify-content-center">
-  <div class="col-11">
-      <table class="table" id="dataTable">
-          <thead>
-              <tr>
-                  <th scope="col">holdID</th>
-                  <th scope="col">created</th>
-                  <th scope="col">materialID</th>
-                  <th scope="col">patronID</th>
-                  <th scope="col">employeeID</th>
-                  <td scope="col"></td>
-              </tr>
-          </thead>
-          <tbody id="tableBody">
-              <tr id="id1">
-                  <td class="holdID">1</td>
-                  <td class="created">10/26/2021 04:33:00PM</td>
-                  <td class="materialID">1</td>
-                  <td class="patronID">1</td>
-                  <td class="employeeID">1</td>
-                  <td class="delete"><button type="button" class="btn btn-outline-danger">delete</button></td>
-              </tr>
-              <tr id="id2">
-                <td class="holdID">2</td>
-                <td class="created">10/26/2021 06:00:03AM</td>
-                <td class="materialID">2</td>
-                <td class="patronID">1</td>
-                <td class="employeeID"></td>
-                <td class="delete"><button type="button" class="btn btn-outline-danger">delete</button></td>
-              </tr>
-          </tbody>
-      </table>
-
+<br>
 
 <!-- 'ADD' Form Content-- This will eventually need to submit somewhere for real-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="addMaterial">
@@ -108,6 +74,7 @@
       </div>
   </form>    
 </div>
+<br>
 
 <!-- 'UPDATE' Form Content-- This will eventually need to submit somewhere for real-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="addMaterial">
@@ -149,6 +116,43 @@
           </div>
       </div>
   </form>    
+</div>
+<br>
+
+<!-- Table Data -- This will eventually come from db directly -->
+<div class="row gy-4 justify-content-center">
+  <div class="col-11">
+      <table class="table" id="dataTable">
+          <thead>
+              <tr>
+                  <th scope="col">holdID</th>
+                  <th scope="col">created</th>
+                  <th scope="col">materialID</th>
+                  <th scope="col">patronID</th>
+                  <th scope="col">employeeID</th>
+                  <td scope="col"></td>
+              </tr>
+          </thead>
+          <tbody id="tableBody">
+              <tr id="id1">
+                  <td class="holdID">1</td>
+                  <td class="created">10/26/2021 04:33:00PM</td>
+                  <td class="materialID">1</td>
+                  <td class="patronID">1</td>
+                  <td class="employeeID">1</td>
+                  <td class="delete"><button type="button" class="btn btn-outline-danger">delete</button></td>
+              </tr>
+              <tr id="id2">
+                <td class="holdID">2</td>
+                <td class="created">10/26/2021 06:00:03AM</td>
+                <td class="materialID">2</td>
+                <td class="patronID">1</td>
+                <td class="employeeID"></td>
+                <td class="delete"><button type="button" class="btn btn-outline-danger">delete</button></td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
 </div>
 
 </body>

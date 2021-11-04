@@ -37,6 +37,41 @@
         </ul>
     </div>
   </nav>
+<br>
+
+<!-- Form Content-- This will eventually need to submit somewhere for real-->
+<div class="border container w-100 bg-light align-items-center gy-5" id="addEmployee">
+  <form class="m-3" name="add">
+      <div class="row">
+          <div class="col">
+              <h5 class="text-center">Add new library employee</h5>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-3">
+              <label class="form-label">First Name:</label>
+              <input type="text" id="fName" class="form-control mb-2" placeholder="John" required>
+          </div>
+          <div class="col-3">
+              <label class="form-label">Last Name:</label>
+              <input type="text" id="lName" class="form-control mb-2" placeholder="Doe">
+          </div>
+          <div class="col-3">
+              <label class="form-label">Position:</label>
+              <input type="text" id="position" class="form-control mb-2" placeholder="Manager">
+
+          </div>
+          <div class="col-3">
+              <label class="form-label">Start Date:</label>
+              <input type="date" id="startDate" class="form-control mb-2">
+          </div>
+          <div class="col-2">
+              <button type="button" class="btn btn-primary" id="submit">Submit</button>
+          </div>
+      </div>
+  </form>  
+  </div>  
+<br>
 
 <!-- Table Data -- This will eventually come from db directly -->
 <div class="row gy-4 justify-content-center">
@@ -69,37 +104,8 @@
             </tr>
           </tbody>
       </table>
-<!-- Form Content-- This will eventually need to submit somewhere for real-->
-<div class="border container w-100 bg-light align-items-center gy-5" id="addEmployee">
-  <form class="m-3" name="add">
-      <div class="row">
-          <div class="col">
-              <h5 class="text-center">Add new library employee</h5>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-3">
-              <label class="form-label">First Name:</label>
-              <input type="text" id="fName" class="form-control mb-2" placeholder="John" required>
-          </div>
-          <div class="col-3">
-              <label class="form-label">Last Name:</label>
-              <input type="text" id="lName" class="form-control mb-2" placeholder="Doe">
-          </div>
-          <div class="col-3">
-              <label class="form-label">Position:</label>
-              <input type="text" id="position" class="form-control mb-2" placeholder="Manager">
-
-          </div>
-          <div class="col-3">
-              <label class="form-label">Start Date:</label>
-              <input type="date" id="startDate" class="form-control mb-2">
-          </div>
-          <div class="col-2">
-              <button type="button" class="btn btn-primary" id="submit">Submit</button>
-          </div>
-      </div>
-  </form>    
+  </div>
+</div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

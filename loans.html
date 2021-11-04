@@ -37,43 +37,7 @@
         </ul>
     </div>
   </nav>
-
-<!-- Table Data -- This will eventually come from db directly -->
-<div class="row gy-4 justify-content-center">
-  <div class="col-11">
-      <table class="table" id="dataTable">
-          <thead>
-              <tr>
-                  <th scope="col">loanID</th>
-                  <th scope="col">materialID</th>
-                  <th scope="col">patronID</th>
-                  <th scope="col">employeeID</th>
-                  <th scope="col">checkout</th>
-                  <th scope="col">due</th>
-                  <th scope="col">returned</th>
-              </tr>
-          </thead>
-          <tbody id="tableBody">
-              <tr id="id1">
-                  <td class="loanID">1</td>
-                  <td class="materialID">1</td>
-                  <td class="patronID">2</td>
-                  <td class="employeeID">1</td>
-                  <td class="checkout">10/20/2021</td>
-                  <td class="due">10/27/2021</td>
-                  <td class="returned">10/23/2021</td>
-              </tr>
-              <tr id="id2">
-                <td class="loanID">2</td>
-                  <td class="materialID">2</td>
-                  <td class="patronID">1</td>
-                  <td class="employeeID"></td>
-                  <td class="checkout">10/26/2021</td>
-                  <td class="due">11/03/2021</td>
-                  <td class="returned"></td>
-              </tr>
-          </tbody>
-      </table>
+<br>
 
 <!-- 'ADD' Form Content-- This will eventually need to submit somewhere for real-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="addMaterial">
@@ -114,6 +78,7 @@
       </div>
   </form>    
 </div>
+<br>
 
 <!-- 'UPDATE' Form Content-- This will eventually need to submit somewhere for real-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="addMaterial">
@@ -164,7 +129,45 @@
       </div>
   </form>    
 </div>
+<br>
 
+<!-- Table Data -- This will eventually come from db directly -->
+<div class="row gy-4 justify-content-center">
+  <div class="col-11">
+      <table class="table" id="dataTable">
+          <thead>
+              <tr>
+                  <th scope="col">loanID</th>
+                  <th scope="col">materialID</th>
+                  <th scope="col">patronID</th>
+                  <th scope="col">employeeID</th>
+                  <th scope="col">checkout</th>
+                  <th scope="col">due</th>
+                  <th scope="col">returned</th>
+              </tr>
+          </thead>
+          <tbody id="tableBody">
+              <tr id="id1">
+                  <td class="loanID">1</td>
+                  <td class="materialID">1</td>
+                  <td class="patronID">2</td>
+                  <td class="employeeID">1</td>
+                  <td class="checkout">10/20/2021</td>
+                  <td class="due">10/27/2021</td>
+                  <td class="returned">10/23/2021</td>
+              </tr>
+              <tr id="id2">
+                <td class="loanID">2</td>
+                  <td class="materialID">2</td>
+                  <td class="patronID">1</td>
+                  <td class="employeeID"></td>
+                  <td class="checkout">10/26/2021</td>
+                  <td class="due">11/03/2021</td>
+                  <td class="returned"></td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
