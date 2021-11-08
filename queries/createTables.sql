@@ -36,9 +36,9 @@ CREATE TABLE `materials` (
   `author` varchar(255) DEFAULT NULL,
   `title` varchar(255) NOT NULL DEFAULT '',
   `medium` varchar(255) NOT NULL DEFAULT '',
-  `restricted` tinyint(1) DEFAULT NULL,
-  `availableCopies` int(11) DEFAULT NULL,
-  `totalCopies` int(11) DEFAULT NULL,
+  `restricted` tinyint(1) DEFAULT NULL, 
+  `availableCopies` int(11) DEFAULT NULL, 
+  `totalCopies` int(11) DEFAULT NULL, 
   `genre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`materialID`)
 );
@@ -58,9 +58,9 @@ ALTER TABLE `holds`
   ADD KEY `holdPatrons` (`patronID`),
   ADD KEY `holdEmployees` (`employeeID`),
   ADD KEY `holdMaterials` (`materialID`),
-  ADD CONSTRAINT `holdEmployees` FOREIGN KEY (`employeeID`) REFERENCES `Employees` (`employeeID`) ON DELETE SET NULL ON UPDATE NO ACTION,
-  ADD CONSTRAINT `holdMaterials` FOREIGN KEY (`materialID`) REFERENCES `Materials` (`materialID`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `holdPatrons` FOREIGN KEY (`patronID`) REFERENCES `Patrons` (`patronID`) ON DELETE CASCADE ON UPDATE NO ACTION
+  ADD CONSTRAINT `holdEmployees` FOREIGN KEY (`employeeID`) REFERENCES `employees` (`employeeID`) ON DELETE SET NULL ON UPDATE NO ACTION,
+  ADD CONSTRAINT `holdMaterials` FOREIGN KEY (`materialID`) REFERENCES `materials` (`materialID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `holdPatrons` FOREIGN KEY (`patronID`) REFERENCES `patrons` (`patronID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ;
 
 -- Adding foreign keys for Loans
@@ -68,7 +68,7 @@ ALTER TABLE `loans`
   ADD KEY `loanEmployees` (`employeeID`),
   ADD KEY `loanPatrons` (`patronID`),
   ADD KEY `loanMaterials` (`materialID`),
-  ADD CONSTRAINT `loanEmployees` FOREIGN KEY (`employeeID`) REFERENCES `Employees` (`employeeID`) ON DELETE SET NULL ON UPDATE NO ACTION,
-  ADD CONSTRAINT `loanMaterials` FOREIGN KEY (`materialID`) REFERENCES `Materials` (`materialID`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `loanPatrons` FOREIGN KEY (`patronID`) REFERENCES `Patrons` (`patronID`) ON DELETE CASCADE ON UPDATE NO ACTION
+  ADD CONSTRAINT `loanEmployees` FOREIGN KEY (`employeeID`) REFERENCES `employees` (`employeeID`) ON DELETE SET NULL ON UPDATE NO ACTION,
+  ADD CONSTRAINT `loanMaterials` FOREIGN KEY (`materialID`) REFERENCES `materials` (`materialID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `loanPatrons` FOREIGN KEY (`patronID`) REFERENCES `patrons` (`patronID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ;
