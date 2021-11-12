@@ -1,0 +1,117 @@
+
+
+<!-- Search Form Content-- This will eventually need to submit somewhere for real-->
+<div class="border container w-50 bg-light align-items-center gy-5" id="searchPatron">
+  <form class="m-3" name="search">
+    <div class="row">
+      <div class="col">
+        <h5 class="text-left">Search for a patron</h5>
+        <div class="col-8">
+          <input type="text" id="search-name" class="form-control mb-2" placeholder="search by name">
+        </div>
+        <div class="col-4">
+          <button type="button" class="btn btn-primary" id="search">Search</button>
+          <button type="button" class="btn btn-light" id="search-clear">Clear</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Add Form Content-- This will eventually need to submit somewhere for real-->
+<div class="border container w-75 bg-light align-items-center gy-5" id="addPatron">
+  <form class="m-3" name="add">
+      <div class="row">
+          <div class="col">
+              <h5 class="text-center">Add new patron of the library</h5>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-4">
+              <label class="form-label">First Name:</label>
+              <input type="text" id="fName" class="form-control mb-2" placeholder="Jane" required>
+          </div>
+          <div class="col-4">
+              <label class="form-label">Last Name:</label>
+              <input type="text" id="lName" class="form-control mb-2" placeholder="Doe" >
+          </div>
+          <div class="col-3">
+              <label class="form-label">Birth Date:</label>
+              <input type="date" id="birthDate" class="form-control mb-2" required>
+          </div>
+          <div class="col-2">
+              <button type="button" class="btn btn-primary" id="submit">Submit</button>
+          </div>
+      </div>
+  </form>
+</div>
+
+<!-- Add Form Content-- This will eventually need to submit somewhere for real-->
+<div class="border container w-75 bg-light align-items-center gy-5" id="updatePatron">
+  <form class="m-3" name="add">
+      <div class="row">
+          <div class="col">
+              <h5 class="text-center">Update Patron</h5>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+          <label class="form-label">PatronID:</label>
+          <input type="text" id="update-id" class="form-control mb-2" placeholder="###">
+        </div>
+          <div class="col-4">
+              <label class="form-label">First Name:</label>
+              <input type="text" id="update-fName" class="form-control mb-2" placeholder="Jane" required>
+          </div>
+          <div class="col-4">
+              <label class="form-label">Last Name:</label>
+              <input type="text" id="update-lName" class="form-control mb-2" placeholder="Doe" >
+          </div>
+          <div class="col-3">
+              <label class="form-label">Birth Date:</label>
+              <input type="date" id="update-birthDate" class="form-control mb-2" required>
+          </div>
+          <div class="col-1">
+            <label class="form-check-label" for="restricted">Flagged:</label>
+            <input class="form-check-input" type="checkbox" id="update-flagged">
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-2">
+              <button type="button" class="btn btn-primary" id="update">Update</button>
+          </div>
+      </div>
+  </form>
+</div>
+
+<div class="row gy-4 justify-content-center">
+    <div class="col-11">
+        <table class="table" id="patronsTable">
+            {{!-- Header section --}}
+            <thead>
+                {{!-- For just the first row, we print each key of the row object as a header cell so we
+                know what each column means when the page renders --}}
+                <tr>
+                    {{#each data.[0]}}
+                    <th scope="col">
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+            </thead>
+
+            {{!-- Body section --}}
+            <tbody id="patronsBody">
+                {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+                {{#each data}}
+                <tr>
+                    <td>{{this.patronID}}</td>
+                    <td>{{this.fName}}</td>
+                    <td>{{this.lName}}</td>
+                    <td>{{this.birthDate}}</td>
+                    <td>{{this.flagged}}</td>
+                </tr>
+                {{/each}}
+        </tbody>
+    </div>
+</div>   
