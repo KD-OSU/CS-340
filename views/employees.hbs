@@ -1,0 +1,64 @@
+<!-- Form Content-- This will eventually need to submit somewhere for real-->
+<div class="border container w-100 bg-light align-items-center g-5" id="addEmployee">
+  <form class="m-3" name="add">
+      <div class="row">
+          <div class="col">
+              <h5 class="text-center">Add new library employee</h5>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-3">
+              <label class="form-label">First Name:</label>
+              <input type="text" id="fName" class="form-control mb-2" placeholder="John" required>
+          </div>
+          <div class="col-3">
+              <label class="form-label">Last Name:</label>
+              <input type="text" id="lName" class="form-control mb-2" placeholder="Doe">
+          </div>
+          <div class="col-3">
+              <label class="form-label">Position:</label>
+              <input type="text" id="position" class="form-control mb-2" placeholder="Manager">
+
+          </div>
+          <div class="col-3">
+              <label class="form-label">Start Date:</label>
+              <input type="date" id="startDate" class="form-control mb-2">
+          </div>
+          <div class="col-2">
+              <button type="button" class="btn btn-primary" id="submit">Submit</button>
+          </div>
+      </div>
+  </form>  
+  </div>  
+
+<div class="row gy-4 justify-content-center">
+    <div class="col-11">
+        <table class="table" id="employeesTable">
+            {{!-- Header section --}}
+            <thead>
+                {{!-- For just the first row, we print each key of the row object as a header cell so we
+                know what each column means when the page renders --}}
+                <tr>
+                    {{#each data.[0]}}
+                    <th scope="col">
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+            </thead>
+
+            {{!-- Body section --}}
+            <tbody id='employeesBody'>
+                {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+                {{#each data}}
+                <tr>
+                    <td>{{this.employeeID}}</td>
+                    <td>{{this.fName}}</td>
+                    <td>{{this.lName}}</td>
+                    <td>{{this.startDate}}</td>
+                    <td>{{this.position}}</td>
+                </tr>
+                {{/each}}
+        </tbody>
+    </div>
+</div>   

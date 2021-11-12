@@ -1,0 +1,109 @@
+<!-- 'ADD' Form Content-- This will eventually need to submit somewhere for real-->
+<div class="border container w-75 bg-light align-items-center gy-5" id="addMaterial">
+  <form class="m-3" name="add">
+      <div class="row">
+          <div class="col">
+              <h5 class="text-center">Create new hold</h5>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-2">
+              <label class="form-label">MaterialID:</label>
+              <input type="text" id="add-materialID" class="form-control mb-2" placeholder="###">
+          </div>
+          <div class="col-2">
+              <label class="form-label">PatronID:</label>
+              <input type="text" id="add-patronID" class="form-control mb-2" placeholder="###">
+          </div>
+          <div class="col-2">
+              <label class="form-label">EmployeeID:</label>
+              <input type="number" id="add-employeeID" class="form-control mb-2" placeholder="###">
+          </div>
+        </div>
+      <div class="row">
+          <div class="col-3">
+              <label class="form-label">created:</label>
+              <input type="text" id="add-created" class="form-control mb-2" placeholder="##/##/####">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-2">
+              <button type="button" class="btn btn-primary" id="submit">Submit</button>
+          </div>
+      </div>
+  </form>    
+</div>
+
+<!-- 'UPDATE' Form Content-- This will eventually need to submit somewhere for real-->
+<div class="border container w-75 bg-light align-items-center gy-5" id="addMaterial">
+  <form class="m-3" name="add">
+      <div class="row">
+          <div class="col">
+              <h5 class="text-center">Update existing hold</h5>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+          <label class="form-label">holdID:</label>
+          <input type="text" id="update-id" class="form-control mb-2" placeholder="###">
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-2">
+              <label class="form-label">MaterialID:</label>
+              <input type="text" id="update-materialID" class="form-control mb-2" placeholder="###">
+          </div>
+          <div class="col-2">
+              <label class="form-label">PatronID:</label>
+              <input type="text" id="update-patronID" class="form-control mb-2" placeholder="###">
+          </div>
+          <div class="col-2">
+              <label class="form-label">EmployeeID:</label>
+              <input type="number" id="update-employeeID" class="form-control mb-2" placeholder="###">
+          </div>
+        </div>
+      <div class="row">
+          <div class="col-3">
+              <label class="form-label">created:</label>
+              <input type="text" id="update-created" class="form-control mb-2" placeholder="##/##/####">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-2">
+              <button type="button" class="btn btn-primary" id="submit">Update</button>
+          </div>
+      </div>
+  </form>    
+</div>
+
+<div class="row gy-4 justify-content-center">
+    <div class="col-11">
+        <table class="table" id="loansTable">
+            {{!-- Header section --}}
+            <thead>
+                {{!-- For just the first row, we print each key of the row object as a header cell so we
+                know what each column means when the page renders --}}
+                <tr>
+                    {{#each data.[0]}}
+                    <th scope="col">
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+            </thead>
+
+            {{!-- Body section --}}
+            <tbody id="loansBody">
+                {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+                {{#each data}}
+                <tr>
+                    <td>{{this.holdID}}</td>
+                    <td>{{this.created}}</td>
+                    <td>{{this.materialID}}</td>
+                    <td>{{this.patronID}}</td>
+                    <td>{{this.employeeID}}</td>
+                </tr>
+                {{/each}}
+        </tbody>
+    </div>
+</div>   

@@ -4,9 +4,13 @@
   "description": "A web interface for a backend MySQL database of a library",
   "main": "index.js",
   "dependencies": {
-    "bootstrap": "^5.1.3"
+    "bootstrap": "^5.1.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "forever": "^4.0.1",
+    "handlebars-dateformat": "^1.1.1",
+    "mysql": "^2.18.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
