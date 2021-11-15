@@ -18,9 +18,9 @@
   </form>
 </div>
 
-<!-- Add Form Content-- This will eventually need to submit somewhere for real-->
-<div class="border container w-75 bg-light align-items-center gy-5" id="addPatron">
-  <form class="m-3" name="add">
+<!-- Form to add a new patron -->
+<div class="border container w-75 bg-light align-items-center gy-5">
+  <form class="m-3" name="add" id="addPatronForm">
       <div class="row">
           <div class="col">
               <h5 class="text-center">Add new patron of the library</h5>
@@ -40,13 +40,13 @@
               <input type="date" id="birthDate" class="form-control mb-2" required>
           </div>
           <div class="col-2">
-              <button type="button" class="btn btn-primary" id="submit">Submit</button>
+              <button type="submit" class="btn btn-primary" id="addPatronSubmit">Submit</button>
           </div>
       </div>
   </form>
 </div>
 
-<!-- Add Form Content-- This will eventually need to submit somewhere for real-->
+<!-- Update Form Content-- This will eventually need to submit somewhere for real-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="updatePatron">
   <form class="m-3" name="add">
       <div class="row">
@@ -101,7 +101,7 @@
             </thead>
 
             {{!-- Body section --}}
-            <tbody id="patronsBody">
+            <tbody id="patronsTableBody">
                 {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
                 {{#each data}}
                 <tr>
@@ -115,3 +115,5 @@
         </tbody>
     </div>
 </div>   
+<script src="./js/common.js"></script>
+<script src="./js/patrons.js"></script>
