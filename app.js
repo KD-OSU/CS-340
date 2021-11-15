@@ -34,7 +34,9 @@ app.get('/', function(req, res)
     }
 );
 
-// PATRONS
+/* ----- PATRONS ----- */
+
+// Display default load of patrons
 app.get('/patrons', function(req, res)
     {
         let query1 = "SELECT patronID, fName, lName, DATE_FORMAT(birthDate, \"%m/%d/%Y\") as birthDate, flagged FROM patrons;";
@@ -44,9 +46,50 @@ app.get('/patrons', function(req, res)
             res.render('patrons', {data: patrons});
         })
     }
-)
+);
 
-// EMPLOYEES
+app.post('/patrons', function(req, res)
+    {
+        let data = req.body;                        // Capture incoming data for manipulation
+        let lName = data.lName;                     // Handle null for last name
+        if (lName == '')
+        {
+            data.lName = 'NULL';
+        }
+
+        // Generate query for sending to db
+
+        query1 = `INSERT INTO patrons (fname, lname, birthDate, flagged) VALUES ('${data.fName}', '${data.lName}', '${data.birthDate}', 0)`;
+        db.pool.query(query1, function(error, rows, fields){
+            if (error)
+            {
+                console.log(error);
+                res.send(400);
+            }
+            else
+            {
+                query2 = `SELECT * from patrons;`;
+                db.pool.query(query2, function(error, rows, fields){
+                    if (error)
+                    {
+                        console.log(error);
+                        res.send(400);
+                    }
+                    else
+                    {   
+                        res.send(rows);
+                    }
+                })
+            }
+        });
+    }
+);
+
+
+
+
+
+/* ----- EMPLOYEES ----- */
 app.get('/employees', function(req, res)
     {
         let query1 = "SELECT employeeID, fName, lName, DATE_FORMAT(startDate, \"%m/%d/%Y\") as startDate, position FROM employees;";
@@ -56,9 +99,9 @@ app.get('/employees', function(req, res)
             res.render('employees', {data: employees});
         })
     }
-)
+);
 
-// MATERIALS
+/* ----- MATERIALS ----- */
 app.get('/materials', function(req, res)
     {
         let query1 = "SELECT * FROM materials;";
@@ -68,9 +111,9 @@ app.get('/materials', function(req, res)
             res.render('materials', {data: materials});
         })
     }
-)
+);
 
-// LOANS
+/* ----- LOANS ----- */
 app.get('/loans', function(req, res)
     {
         let query1 = "SELECT * FROM loans;";
@@ -80,9 +123,9 @@ app.get('/loans', function(req, res)
             res.render('loans', {data: loans});
         })
     }
-)
+);
 
-// HOLDS
+/* ----- HOLDS ----- */
 app.get('/holds', function(req, res)
     {
         let query1 = "SELECT * FROM holds;";
@@ -92,7 +135,7 @@ app.get('/holds', function(req, res)
             res.render('holds', {data: holds});
         })
     }
-)
+);
 
 // SAMPLE
 app.get('/sample', function(req, res)
