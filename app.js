@@ -48,6 +48,7 @@ app.get('/patrons', function(req, res)
     }
 );
 
+// Create a new patron
 app.post('/patrons', function(req, res)
     {
         let data = req.body;                        // Capture incoming data for manipulation
@@ -126,14 +127,71 @@ app.get('/loans', function(req, res)
 );
 
 /* ----- HOLDS ----- */
+
+// Displays default load of holds
 app.get('/holds', function(req, res)
-    {
-        let query1 = "SELECT * FROM holds;";
-        db.pool.query(query1, function(error, rows, fields){
-            // Save query results
+    {   
+        // Queries
+        let holdsQuery = "SELECT holdID, DATE_FORMAT(created, \"%m/%d/%Y %r\") as created, materialID, patronID, employeeID FROM holds;";
+        let materialsQuery = "SELECT * FROM materials;";
+        let patronsQuery = "SELECT * FROM patrons;";
+        let employeesQuery = "SELECT * FROM employees;";
+
+        // Get all the holds, and nest the other queries sequentially this so they ALL run before we return
+        // The subsequent queries populate the form dropdowns
+        db.pool.query(holdsQuery, function(error, rows, fields){
             let holds = rows;
-            res.render('holds', {data: holds});
+            // Materials
+            db.pool.query(materialsQuery, function(error, rows, fields){
+                let materials = rows;
+                // Patrons
+                db.pool.query(patronsQuery, function(error, rows, fields){
+                    let patrons = rows;
+                    // Employees
+                    db.pool.query(employeesQuery, function(error, rows, fields){
+                        let employees = rows;
+                        console.log({data: holds, materials: materials, patrons: patrons, employees: employees})
+                        return res.render('holds', {data: holds, materials: materials, patrons: patrons, employees: employees});
+                    })
+                })
+            })
         })
+    }
+);
+
+// Create a new hold
+app.post('/holds', function(req, res)
+    {
+        let data = req.body;                                  // Capture incoming data for manipulation
+        let employeeID = data.employeeID;                     // Handle null for employee name
+        if (employeeID == '')
+        {
+            data.employeeID = 'NULL';
+        }
+        // Generate query for sending to db
+        query1 = `INSERT INTO holds (created, materialID, patronID, employeeID) VALUES (now(), ${data.materialID}, ${data.patronID}, ${data.employeeID})`;
+        db.pool.query(query1, function(error, rows, fields){
+            if (error)
+            {
+                console.log(error);
+                res.send(400);
+            }
+            else
+            {
+                query2 = `SELECT * from holds;`;
+                db.pool.query(query2, function(error, rows, fields){
+                    if (error)
+                    {
+                        console.log(error);
+                        res.send(400);
+                    }
+                    else
+                    {   
+                        res.send(rows);
+                    }
+                })
+            }
+        });
     }
 );
 
