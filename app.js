@@ -102,6 +102,57 @@ app.get('/employees', function(req, res)
     }
 );
 
+app.post('/employees', function(req, res)
+    {
+        console.log("Got this far");
+        let data = req.body;
+        console.log(data);
+        let lName = data.lName;                     // Handle null for last name
+        if (lName == '')
+        {
+            data.lName = 'NULL';
+        }
+
+        let position = data.position;                     // Handle null for position
+        if (position == '')
+        {
+            data.position = 'NULL';
+        }
+
+        let startDate = data.startDate;                     // Handle null for last name
+        if (startDate == '')
+        {
+            data.startDate = 'NULL';
+        }
+
+        // Generate query for sending to db
+
+        query1 = `INSERT INTO employees (fname, lname, startDate, position) VALUES ('${data.fName}', '${data.lName}', '${data.startDate}', '${data.position}')`;
+        db.pool.query(query1, function(error, rows, fields){
+            if (error)
+            {
+                console.log(error);
+                res.send(400);
+            }
+            else
+            {
+                query2 = `SELECT * from employees;`;
+                db.pool.query(query2, function(error, rows, fields){
+                    if (error)
+                    {
+                        console.log(error);
+                        res.send(400);
+                    }
+                    else
+                    {   
+                        res.send(rows);
+                    }
+                })
+            }
+        });
+    }   
+);
+
 /* ----- MATERIALS ----- */
 app.get('/materials', function(req, res)
     {
@@ -150,7 +201,7 @@ app.get('/holds', function(req, res)
                     // Employees
                     db.pool.query(employeesQuery, function(error, rows, fields){
                         let employees = rows;
-                        console.log({data: holds, materials: materials, patrons: patrons, employees: employees})
+                        //console.log({data: holds, materials: materials, patrons: patrons, employees: employees})
                         return res.render('holds', {data: holds, materials: materials, patrons: patrons, employees: employees});
                     })
                 })
@@ -266,5 +317,5 @@ app.post('/add-person-ajax', function(req, res)
 */
 
 app.listen(PORT, function(){
-    console.log('Express started onhttp://localhost:' + PORT + '; press ctrl + C to terminate.')
+    console.log('Express started on http://flip3.engr.oregonstate.edu/:' + PORT + '; press ctrl + C to terminate.')
 });

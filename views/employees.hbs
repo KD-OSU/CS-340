@@ -1,5 +1,5 @@
 <!-- Form Content-- This will eventually need to submit somewhere for real-->
-<div class="border container w-100 bg-light align-items-center g-5" id="addEmployee">
+<div class="border container w-100 bg-light align-items-center g-5" id="addEmployeeForm">
   <form class="m-3" name="add">
       <div class="row">
           <div class="col">
@@ -25,7 +25,7 @@
               <input type="date" id="startDate" class="form-control mb-2">
           </div>
           <div class="col-2">
-              <button type="button" class="btn btn-primary" id="submit">Submit</button>
+              <button type="submit" class="btn btn-primary" id="submit">Submit</button>
           </div>
       </div>
   </form>  
@@ -48,7 +48,7 @@
             </thead>
 
             {{!-- Body section --}}
-            <tbody id='employeesBody'>
+            <tbody id='employeesTableBody'>
                 {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
                 {{#each data}}
                 <tr>
@@ -62,3 +62,6 @@
         </tbody>
     </div>
 </div>   
+
+<script src="./js/common.js"></script>
+<script src="./js/employees.js"></script>
