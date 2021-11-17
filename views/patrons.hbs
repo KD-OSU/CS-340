@@ -1,17 +1,17 @@
 
 
 <!-- Search Form Content-- This will eventually need to submit somewhere for real-->
-<div class="border container w-50 bg-light align-items-center gy-5" id="searchPatron">
-  <form class="m-3" name="search">
+<div class="border container w-50 bg-light align-items-center gy-5">
+  <form class="m-3" id="searchPatron" method='GET' action='/patrons'>
     <div class="row">
       <div class="col">
         <h5 class="text-left">Search for a patron</h5>
         <div class="col-8">
-          <input type="text" id="search-name" class="form-control mb-2" placeholder="search by name">
+          <input type="text" id="searchName" class="form-control mb-2" name="name" placeholder="search by name">
         </div>
         <div class="col-4">
-          <button type="button" class="btn btn-primary" id="search">Search</button>
-          <button type="button" class="btn btn-light" id="search-clear">Clear</button>
+          <button type="submit" class="btn btn-primary" id="search">Search</button>
+          <a href='/'><button type="submit" class="btn btn-light" id="search-clear">Clear</button></a>
         </div>
       </div>
     </div>

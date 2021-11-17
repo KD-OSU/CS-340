@@ -38,8 +38,23 @@ app.get('/', function(req, res)
 
 // Display default load of patrons
 app.get('/patrons', function(req, res)
-    {
-        let query1 = "SELECT patronID, fName, lName, DATE_FORMAT(birthDate, \"%m/%d/%Y\") as birthDate, flagged FROM patrons;";
+    {   
+        let query1;
+        // If there is no search term
+        if (req.query.name === undefined)
+        {
+            query1 = "SELECT patronID, fName, lName, DATE_FORMAT(birthDate, \"%m/%d/%Y\") as birthDate, flagged FROM patrons;";
+        }
+        // If there is a search term
+        else
+        {
+            query1 = `
+            SELECT patronID, fName, lName, DATE_FORMAT(birthDate, \"%m/%d/%Y\") as birthDate, flagged
+            FROM patrons\
+            WHERE fName LIKE '%${req.query.name}%' OR lName LIKE '%${req.query.name}%'
+            `;
+        }
+        
         db.pool.query(query1, function(error, rows, fields){
             // Save query results
             let patrons = rows;
@@ -317,5 +332,5 @@ app.post('/add-person-ajax', function(req, res)
 */
 
 app.listen(PORT, function(){
-    console.log('Express started on http://flip3.engr.oregonstate.edu/:' + PORT + '; press ctrl + C to terminate.')
+    console.log('Express started on http://flip1.engr.oregonstate.edu/:' + PORT + '; press ctrl + C to terminate.')
 });
