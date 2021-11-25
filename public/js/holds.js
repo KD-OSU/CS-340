@@ -2,6 +2,14 @@
 
 // Client-side javascript for manipulating the DOM and making http requests from the holds page
 
+
+/* 
+
+ADD ROW FUNCTIONALITY
+
+*/
+
+// Make a post request and add row when addHoldFrom is submitted
 let addHoldForm = document.getElementById('addHoldForm');
 
 addHoldForm.addEventListener("submit", function(e) {
@@ -46,6 +54,7 @@ addHoldForm.addEventListener("submit", function(e) {
 
 })
 
+
 // Add row to table in front-end
 // I think this can be a common js function that we can use use in all files if we create a loop to deal with the data
 addRowToTable = (data) => {
@@ -80,3 +89,47 @@ addRowToTable = (data) => {
     // Add row to table in DOM
     currentTable.appendChild(row);
 }
+
+
+
+/*
+
+DELETE ROW FUNCTIONALITY
+
+*/
+
+// Functions to bind all the delete buttons
+
+document.addEventListener("DOMContentLoaded", bindDeletes);
+
+function bindDeleteButton(deleteButton){
+    // Bind the delete button after a new row is added or the DOM is reloaded
+    deleteButton.addEventListener("click", function(){
+        var deleteId = deleteButton.getAttribute("deleteId");
+        var req = new XMLHttpRequest();
+        var payload = {}
+        payload.id = deleteId
+        req.open('DELETE', `/holds/${deleteId}`, true)
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.addEventListener('load',function(){
+            if(req.status >= 200 && req.status < 400){
+                deleteRow(deleteId)
+            } else {
+              console.log("Error in network request: " + req.statusText);
+            }});
+        req.send(JSON.stringify(payload));
+    })
+}
+
+function bindDeletes() {
+    document.querySelectorAll('.btn-outline-danger').forEach(item => {
+    // Add event listener to make DELETE request on specific ID
+        bindDeleteButton(item)
+});
+}
+
+function deleteRow(deleteId) {
+    let row = document.getElementById(deleteId)
+    row.parentNode.removeChild(row);
+}
+

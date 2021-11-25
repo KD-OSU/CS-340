@@ -113,6 +113,7 @@
                         {{@key}}
                     </th>
                     {{/each}}
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
 
@@ -120,12 +121,13 @@
             <tbody id="holdsTableBody">
                 {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
                 {{#each data}}
-                <tr>
+                <tr id="{{this.holdID}}">
                     <td>{{this.holdID}}</td>
                     <td>{{this.created}}</td>
                     <td>{{this.materialID}}</td>
                     <td>{{this.patronID}}</td>
                     <td>{{this.employeeID}}</td>
+                    <td class="delete"><button type="button" class="btn btn-outline-danger" deleteId={{this.holdID}}>Delete</button></td>
                 </tr>
                 {{/each}}
         </tbody>

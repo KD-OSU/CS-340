@@ -261,6 +261,21 @@ app.post('/holds', function(req, res)
     }
 );
 
+app.delete('/holds/:id', function(req, res){
+    var query1 = "DELETE FROM holds WHERE holdID = ?";
+    var inserts = [req.params.id];
+    sql = db.pool.query(query1, inserts, function(error, results, fields){
+        if (error) {
+            console.log(error)
+            res.write(JSON.stringify(error));
+            res.status(400);
+            res.end();
+        } else {
+            res.status(202).end();
+        }
+    })
+});
+
 // SAMPLE
 app.get('/sample', function(req, res)
     {
