@@ -63,14 +63,24 @@ addRowToTable = (data) => {
     let parsedData = JSON.parse(data);                              
     let newRow = parsedData[parsedData.length - 1];                 // Gets the last row of the current dataset
     
-
-    // Create a row with five cells
+    // Create a row with six cells
     let row = document.createElement("tr");
     let idCell = document.createElement("td");
     let createdCell = document.createElement("td");
     let materialCell = document.createElement("td");
     let patronCell = document.createElement("td");
     let employeeCell = document.createElement("td");
+    let deleteCell = document.createElement("td");
+    
+    row.id = newRow.holdID;
+
+    // Create delete button
+    let deleteButton = document.createElement("button");
+    deleteButton.type="button";
+    deleteButton.className = "btn btn-outline-danger";
+    deleteButton.setAttribute("deleteId", newRow.holdID);
+    deleteButton.innerText = "Delete";
+    bindDeleteButton(deleteButton);
 
     // Fill cells with data
     idCell.innerText = newRow.holdID;
@@ -78,13 +88,17 @@ addRowToTable = (data) => {
     materialCell.innerText = newRow.materialID;
     patronCell.innerText = newRow.patronID
     employeeCell.innerText = newRow.employeeID;
+    deleteCell.className = "delete";
+    deleteCell.appendChild(deleteButton);
 
+    
     // Add the cells to the row in the DOM
     row.appendChild(idCell);
     row.appendChild(createdCell);
     row.appendChild(materialCell);
     row.appendChild(patronCell);
     row.appendChild(employeeCell);
+    row.appendChild(deleteCell);
 
     // Add row to table in DOM
     currentTable.appendChild(row);
