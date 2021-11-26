@@ -178,6 +178,43 @@ app.get('/materials', function(req, res)
     }
 );
 
+// Create a new material
+app.post('/materials', function(req, res)
+    {
+        let data = req.body;                                  // Capture incoming data for manipulation
+        let employeeID = data.employeeID;                     // Handle null for employee name
+        if (employeeID == '')
+        {
+            data.employeeID = 'NULL';
+        }
+        // Generate query for sending to db
+        query1 = `INSERT INTO materials (author, title, medium, genre, restricted, availableCopies, totalCopies) 
+                  VALUES ('${data.author}', '${data.title}', '${data.medium}', '${data.genre}', ${data.restricted}, ${data.copies}, ${data.copies});`;
+        db.pool.query(query1, function(error, rows, fields){
+            if (error)
+            {
+                console.log(error);
+                res.send(400);
+            }
+            else
+            {
+                query2 = `SELECT * from materials;`;
+                db.pool.query(query2, function(error, rows, fields){
+                    if (error)
+                    {
+                        console.log(error);
+                        res.send(400);
+                    }
+                    else
+                    {   
+                        res.send(rows);
+                    }
+                })
+            }
+        });
+    }
+);
+
 /* ----- LOANS ----- */
 app.get('/loans', function(req, res)
     {
@@ -209,7 +246,7 @@ app.get('/loans', function(req, res)
     }
 );
 
-// Create a new hold
+// Create a new loan
 app.post('/loans', function(req, res)
     {
         let data = req.body;                                  // Capture incoming data for manipulation
