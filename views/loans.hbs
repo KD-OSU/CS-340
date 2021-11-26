@@ -1,6 +1,6 @@
 <!-- 'ADD' Form Content-- This will eventually need to submit somewhere for real-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="addLoan ">
-  <form class="m-3" name="add">
+  <form class="m-3" name="add" id="addLoanForm">
       <div class="row">
           <div class="col">
               <h5 class="text-center">Create new loan</h5>
@@ -8,31 +8,44 @@
       </div>
       <div class="row">
           <div class="col-2">
-              <label class="form-label">MaterialID:</label>
-              <input type="text" id="add-materialID" class="form-control mb-2" placeholder="###">
+              <label class="form-label">Material:</label>
+              <select id="addMaterial" class="form-control mb-2">
+                    {{#each materials}}
+                    <option value="{{this.materialID}}">{{this.title}}, {{this.author}}</option>
+                    {{/each}}
+                </select>
           </div>
           <div class="col-2">
-              <label class="form-label">PatronID:</label>
-              <input type="text" id="add-patronID" class="form-control mb-2" placeholder="###">
+              <label class="form-label">Patron:</label>
+              <select id="addPatron" class="form-control mb-2">
+                    {{#each patrons}}
+                    <option value="{{this.patronID}}">{{this.fName}} {{this.lName}}</option>
+                    {{/each}}
+                </select>
           </div>
           <div class="col-2">
-              <label class="form-label">EmployeeID:</label>
-              <input type="number" id="add-employeeID" class="form-control mb-2" placeholder="###">
+              <label class="form-label">Employee:</label>
+              <select id="addEmployee" class="form-control mb-2">
+                    <option value="">Select an employee (Optional)</option>
+                    {{#each employees}}
+                    <option value="{{this.employeeID}}">{{this.fName}} {{this.lName}}</option>
+                    {{/each}}
+                </select>
           </div>
         </div>
       <div class="row">
           <div class="col-3">
               <label class="form-label">checkout:</label>
-              <input type="text" id="add-checkout" class="form-control mb-2" placeholder="##/##/####">
+              <input type="date" id="addCheckout" class="form-control mb-2">
           </div>
           <div class="col-3">
               <label class="form-label">due:</label>
-              <input type="text" id="add-due" class="form-control mb-2" placeholder="##/##/####">
+              <input type="date" id="addDue" class="form-control mb-2">
           </div>
       </div>
       <div class="row">
           <div class="col-2">
-              <button type="button" class="btn btn-primary" id="submit">Submit</button>
+              <button type="submit" class="btn btn-primary" id="submit">Submit</button>
           </div>
       </div>
   </form>    
@@ -105,7 +118,7 @@
             </thead>
 
             {{!-- Body section --}}
-            <tbody id="loansBody">
+            <tbody id="loansTableBody">
                 {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
                 {{#each data}}
                 <tr>
@@ -121,3 +134,5 @@
         </tbody>
     </div>
 </div>   
+<script src="./js/common.js"></script>
+<script src="./js/loans.js"></script>

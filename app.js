@@ -119,9 +119,7 @@ app.get('/employees', function(req, res)
 
 app.post('/employees', function(req, res)
     {
-        console.log("Got this far");
         let data = req.body;
-        console.log(data);
         let lName = data.lName;                     // Handle null for last name
         if (lName == '')
         {
@@ -183,12 +181,67 @@ app.get('/materials', function(req, res)
 /* ----- LOANS ----- */
 app.get('/loans', function(req, res)
     {
-        let query1 = "SELECT * FROM loans;";
-        db.pool.query(query1, function(error, rows, fields){
-            // Save query results
+        // Queries
+        let loansQuery = "SELECT loanID, materialID, patronID, employeeID, DATE_FORMAT(checkout, \"%m/%d/%Y\") as checkout, DATE_FORMAT(due, \"%m/%d/%Y\") as due, DATE_FORMAT(returned, \"%m/%d/%Y\") as returned FROM loans;";
+        let materialsQuery = "SELECT * FROM materials;";
+        let patronsQuery = "SELECT * FROM patrons;";
+        let employeesQuery = "SELECT * FROM employees;";
+
+        // Get all the holds, and nest the other queries sequentially this so they ALL run before we return
+        // The subsequent queries populate the form dropdowns
+        db.pool.query(loansQuery, function(error, rows, fields){
             let loans = rows;
-            res.render('loans', {data: loans});
+            // Materials
+            db.pool.query(materialsQuery, function(error, rows, fields){
+                let materials = rows;
+                // Patrons
+                db.pool.query(patronsQuery, function(error, rows, fields){
+                    let patrons = rows;
+                    // Employees
+                    db.pool.query(employeesQuery, function(error, rows, fields){
+                        let employees = rows;
+                        //console.log({data: holds, materials: materials, patrons: patrons, employees: employees})
+                        return res.render('loans', {data: loans, materials: materials, patrons: patrons, employees: employees});
+                    })
+                })
+            })
         })
+    }
+);
+
+// Create a new hold
+app.post('/loans', function(req, res)
+    {
+        let data = req.body;                                  // Capture incoming data for manipulation
+        let employeeID = data.employeeID;                     // Handle null for employee name
+        if (employeeID == '')
+        {
+            data.employeeID = 'NULL';
+        }
+        // Generate query for sending to db
+        query1 = `INSERT INTO loans (materialID, patronID, employeeID, checkout, due) VALUES (${data.materialID}, ${data.patronID}, ${data.employeeID}, '${data.checkout}', '${data.due}')`;
+        db.pool.query(query1, function(error, rows, fields){
+            if (error)
+            {
+                console.log(error);
+                res.send(400);
+            }
+            else
+            {
+                query2 = `SELECT * from loans;`;
+                db.pool.query(query2, function(error, rows, fields){
+                    if (error)
+                    {
+                        console.log(error);
+                        res.send(400);
+                    }
+                    else
+                    {   
+                        res.send(rows);
+                    }
+                })
+            }
+        });
     }
 );
 
