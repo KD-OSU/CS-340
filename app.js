@@ -101,6 +101,35 @@ app.post('/patrons', function(req, res)
     }
 );
 
+// Update an existing patron
+app.put('/patrons/:id', function(req, res){
+    query = "UPDATE patrons SET fName=?, lName=?, birthDate=?, flagged=? WHERE patronID=?";
+    var inserts = [req.body.fName, req.body.lName, req.body.birthDate, req.body.flagged, req.params.id];
+    query = db.pool.query(query,inserts,function(error, results, fields){
+        if (error) {
+            console.log(error)
+            res.write(JSON.stringify(error));
+            res.end();
+        } else {
+            query2 = "SELECT * FROM patrons WHERE patronID =?"
+            inserts2 = [req.params.id];
+            query2 = db.pool.query(query2, inserts2, function(error, rows, fields){
+                if (error)
+                {
+                    console.log(error);
+                    res.send(400);
+                }
+                else
+                {   
+                    res.status(200);
+                    res.send(rows);
+                }
+            })
+            
+        }
+    });
+});
+
 
 
 

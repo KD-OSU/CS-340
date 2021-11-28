@@ -2,9 +2,85 @@
 
 // Client-side javascript for manipulating the DOM and making http requests from the patrons page
 
-let addPersonForm = document.getElementById('addPatronForm');
+// Updating a patron
+let updatePatronForm = document.getElementById('updatePatronForm');
 
-addPersonForm.addEventListener("submit", function(e) {
+updatePatronForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Form inputs
+    let inputID = document.getElementById('update-id');
+    let inputFirstName = document.getElementById('update-fName');
+    let inputLastName = document.getElementById('update-lName');
+    let inputBirthDate = document.getElementById('update-birthDate');
+    let inputFlagged = document.getElementById('update-flagged');
+
+    // Input values
+    let inputIDValue = inputID.value;
+    let firstNameValue = inputFirstName.value
+    let lastNameValue = inputLastName.value;
+    let birthDateValue = inputBirthDate.value;
+    let flaggedValue = inputFlagged.value;
+
+    // Create object
+    let data = {
+        fName: firstNameValue,
+        lName: lastNameValue,
+        birthDate: birthDateValue,
+        flagged : flaggedValue,
+    }
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", `/patrons/${inputIDValue}`, true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    // Tell ajax request how to resolve
+    xhttp.onreadystatechange = () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            // Add new row to table
+            updateTableRow(xhttp.response);
+
+            // Clear input fields to allow for another insert
+            inputID.value = '';
+            inputFirstName.value = '';
+            inputLastName.value = '';
+            inputBirthDate.value = '';
+            inputFlagged.value = '';
+        }
+        else if (xhttp.readyState == 4 && xhttp.status != 200) {
+            console.log("There was an error with the input.")
+        }
+    }
+
+    // Send request and wait for response
+    xhttp.send(JSON.stringify(data));
+})
+
+updateTableRow = (data) => {
+    
+    let updatedRow = JSON.parse(data)[0];               // Get updated results from db
+    
+
+    idCell = document.getElementById(`${updatedRow.patronID}ID`)
+    firstNameCell = document.getElementById(`${updatedRow.patronID}fName`)
+    lastNameCell = document.getElementById(`${updatedRow.patronID}lName`)
+    birthDateCell = document.getElementById(`${updatedRow.patronID}birthDate`)
+    flaggedCell = document.getElementById(`${updatedRow.patronID}flagged`)
+
+    // Fill cells with data
+    idCell.innerText = updatedRow.patronID;
+    firstNameCell.innerText = updatedRow.fName;
+    lastNameCell.innerText = updatedRow.lName;
+    birthDateCell.innerText = toLocalDate(updatedRow.birthDate);
+    flaggedCell.innerText = updatedRow.flagged;
+}
+
+
+// Adding a patron
+
+let addPatronForm = document.getElementById('addPatronForm');
+
+addPatronForm.addEventListener("submit", function(e) {
 
     // Prevent the submission and refreshing of the page
     e.preventDefault();

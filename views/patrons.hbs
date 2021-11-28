@@ -47,8 +47,8 @@
 </div>
 
 <!-- Update Form Content-- This will eventually need to submit somewhere for real-->
-<div class="border container w-75 bg-light align-items-center gy-5" id="updatePatron">
-  <form class="m-3" name="add">
+<div class="border container w-75 bg-light align-items-center gy-5">
+  <form class="m-3" name="add" id="updatePatronForm">
       <div class="row">
           <div class="col">
               <h5 class="text-center">Update Patron</h5>
@@ -57,11 +57,11 @@
       <div class="row">
         <div class="col-2">
           <label class="form-label">PatronID:</label>
-          <input type="text" id="update-id" class="form-control mb-2" placeholder="###">
+          <input type="text" id="update-id" class="form-control mb-2" placeholder="###" required>
         </div>
           <div class="col-4">
               <label class="form-label">First Name:</label>
-              <input type="text" id="update-fName" class="form-control mb-2" placeholder="Jane" required>
+              <input type="text" id="update-fName" class="form-control mb-2" placeholder="Jane">
           </div>
           <div class="col-4">
               <label class="form-label">Last Name:</label>
@@ -69,7 +69,7 @@
           </div>
           <div class="col-3">
               <label class="form-label">Birth Date:</label>
-              <input type="date" id="update-birthDate" class="form-control mb-2" required>
+              <input type="date" id="update-birthDate" class="form-control mb-2">
           </div>
           <div class="col-1">
             <label class="form-check-label" for="restricted">Flagged:</label>
@@ -78,7 +78,7 @@
       </div>
       <div class="row">
           <div class="col-2">
-              <button type="button" class="btn btn-primary" id="update">Update</button>
+              <button type="submit" class="btn btn-primary" id="update">Update</button>
           </div>
       </div>
   </form>
@@ -105,11 +105,11 @@
                 {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
                 {{#each data}}
                 <tr>
-                    <td>{{this.patronID}}</td>
-                    <td>{{this.fName}}</td>
-                    <td>{{this.lName}}</td>
-                    <td>{{this.birthDate}}</td>
-                    <td>{{this.flagged}}</td>
+                    <td id='{{this.patronID}}ID'>{{this.patronID}}</td>
+                    <td id='{{this.patronID}}fName'>{{this.fName}}</td>
+                    <td id='{{this.patronID}}lName'>{{this.lName}}</td>
+                    <td id='{{this.patronID}}birthDate'>{{this.birthDate}}</td>
+                    <td id='{{this.patronID}}flagged'>{{this.flagged}}</td>
                 </tr>
                 {{/each}}
         </tbody>
