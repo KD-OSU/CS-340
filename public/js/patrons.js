@@ -20,7 +20,8 @@ updatePatronForm.addEventListener("submit", function(e) {
     let firstNameValue = inputFirstName.value
     let lastNameValue = inputLastName.value;
     let birthDateValue = inputBirthDate.value;
-    let flaggedValue = inputFlagged.value;
+    // The checkboxes don't have a value, they just have a 'checked' property
+    let flaggedValue = inputFlagged.checked ? 1 : 0;
 
     // Create object
     let data = {
@@ -37,7 +38,7 @@ updatePatronForm.addEventListener("submit", function(e) {
     // Tell ajax request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            // Add new row to table
+            // Update existing row in table
             updateTableRow(xhttp.response);
 
             // Clear input fields to allow for another insert
@@ -45,7 +46,7 @@ updatePatronForm.addEventListener("submit", function(e) {
             inputFirstName.value = '';
             inputLastName.value = '';
             inputBirthDate.value = '';
-            inputFlagged.value = '';
+            inputFlagged.checked = false;
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
