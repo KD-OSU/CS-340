@@ -103,29 +103,53 @@ app.post('/patrons', function(req, res)
 
 // Update an existing patron
 app.put('/patrons/:id', function(req, res){
-    query = "UPDATE patrons SET fName=?, lName=?, birthDate=?, flagged=? WHERE patronID=?";
-    var inserts = [req.body.fName, req.body.lName, req.body.birthDate, req.body.flagged, req.params.id];
-    query = db.pool.query(query,inserts,function(error, results, fields){
+
+    // Get the existing patron information to use in order to avoid overwriting data with empty strings
+    var query1 = "SELECT * FROM patrons WHERE patronID=?";
+    var query1Inserts = [req.params.id];
+    query1 = db.pool.query(query1, query1Inserts, function(error, results, fields){
         if (error) {
             console.log(error)
-            res.write(JSON.stringify(error));
+            res.writeContinue(JSON.stringify(error));
             res.end();
         } else {
-            query2 = "SELECT * FROM patrons WHERE patronID =?"
-            inserts2 = [req.params.id];
-            query2 = db.pool.query(query2, inserts2, function(error, rows, fields){
-                if (error)
-                {
+
+            // If any parameter from the request is an empty string, do not overwrite the existing value
+            var results = results[0]
+            req.body.fName = (req.body.fName === '') ? results.fName : req.body.fName;
+            req.body.lName = (req.body.lName === '') ? results.lName : req.body.lName;
+            req.body.birthDate = (req.body.birthDate === '') ? results.birthDate : req.body.birthDate;
+
+            // Flagged is a checkbox and so cannot come through as an empty string
+            req.body.flagged = (req.body.flagged == results.flagged) ? results.flagged : req.body.flagged;
+
+            // Update patrons with the new information
+            var query2 = "UPDATE patrons SET fName=?, lName=?, birthDate=?, flagged=? WHERE patronID=?";
+            var query2Inserts = [req.body.fName, req.body.lName, req.body.birthDate, req.body.flagged, req.params.id];
+            query2 = db.pool.query(query2, query2Inserts, function(error, results, fields){
+                if (error) {
                     console.log(error);
-                    res.send(400);
-                }
-                else
-                {   
-                    res.status(200);
-                    res.send(rows);
+                    res.write(JSON.stringify(error));
+                    res.end();
+                } else {
+
+                    // Send back the information about this patron for displaying the new data in the row
+                    query3 = "SELECT * FROM patrons WHERE patronID = ?"
+                    query3Inserts = [req.params.id];
+                    query3 = db.pool.query(query3, query3Inserts, function(error, rows, fields){
+                        if (error)
+                        {
+                            console.log(error);
+                            res.send(400);
+                        }
+                        else
+                        {
+                            res.status(200);
+                            res.send(rows);
+                        }
+                    })
                 }
             })
-            
         }
     });
 });
