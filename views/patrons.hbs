@@ -57,7 +57,11 @@
       <div class="row">
         <div class="col-2">
           <label class="form-label">PatronID:</label>
-          <input type="text" id="update-id" class="form-control mb-2" placeholder="###" required>
+          <select id="update-id" class="form-control mb-2">
+                    {{#each data}}
+                    <option value="{{this.patronID}}">{{this.fName}}, {{this.lName}}</option>
+                    {{/each}}
+                </select>
         </div>
           <div class="col-4">
               <label class="form-label">First Name:</label>
