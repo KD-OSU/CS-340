@@ -95,12 +95,12 @@
         <div class="row">
             <div class="col-2">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="restricted">
+                    <input class="form-check-input" type="checkbox" id="update-restricted">
                     <label class="form-check-label" for="restricted">Restricted?</label>
                 </div>
             </div>
             <div class="col-2">
-                <button type="button" class="btn btn-primary" id="submit">Submit</button>
+                <button type="submit" class="btn btn-primary" id="update">Update</button>
             </div>
         </div>
     </form>    
@@ -127,14 +127,14 @@
                 {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
                 {{#each data}}
                 <tr>
-                    <td>{{this.materialID}}</td>
-                    <td>{{this.author}}</td>
-                    <td>{{this.title}}</td>
-                    <td>{{this.medium}}</td>
-                    <td>{{this.restricted}}</td>
-                    <td>{{this.availableCopies}}</td>
-                    <td>{{this.totalCopies}}</td>
-                    <td>{{this.genre}}</td>
+                    <td id='{{this.materialID}}ID'>{{this.materialID}}</td>
+                    <td id='{{this.materialID}}author'>{{this.author}}</td>
+                    <td id='{{this.materialID}}title'>{{this.title}}</td>
+                    <td id='{{this.materialID}}medium'>{{this.medium}}</td>
+                    <td id='{{this.materialID}}restricted'>{{this.restricted}}</td>
+                    <td id='{{this.materialID}}availableCopies'>{{this.availableCopies}}</td>
+                    <td id='{{this.materialID}}totalCopies'>{{this.totalCopies}}</td>
+                    <td id='{{this.materialID}}genre'>{{this.genre}}</td>
                 </tr>
                 {{/each}}
         </tbody>
