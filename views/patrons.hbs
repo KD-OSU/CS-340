@@ -56,10 +56,10 @@
       </div>
       <div class="row">
         <div class="col-2">
-          <label class="form-label">PatronID:</label>
+          <label class="form-label">Patron:</label>
           <select id="update-id" class="form-control mb-2">
                     {{#each data}}
-                    <option value="{{this.patronID}}">{{this.fName}}, {{this.lName}}</option>
+                    <option value="{{this.patronID}}">{{this.patronID}} {{this.fName}}, {{this.lName}}</option>
                     {{/each}}
                 </select>
         </div>

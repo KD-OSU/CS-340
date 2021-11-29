@@ -46,7 +46,7 @@
 </div>
 
 
-<!-- ADD Form Content-- This will eventually need to submit somewhere for real-->
+<!-- UPDATE Form Content- This will eventually need to submit somewhere for real-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="updateMaterialForm">
     <form class="m-3" name="add">
         <div class="row">
@@ -55,10 +55,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-2">
-                <label class="form-label">MaterialID:</label>
-                <input type="text" id="update-id" class="form-control mb-2" placeholder="###">
+            <div class="col-4">
+                <label class="form-label">Material:</label>
+                <select id="update-id" class="form-control mb-2">
+                    {{#each data}}
+                    <option value="{{this.materialID}}">{{this.materialID}} {{this.title}}</option>
+                    {{/each}}
+                </select>
             </div>
+        </div>
+        <div class="row">
             <div class="col-4">
                 <label class="form-label">Title:</label>
                 <input type="text" id="update-title" class="form-control mb-2" placeholder="The Cat in the Hat" required>
