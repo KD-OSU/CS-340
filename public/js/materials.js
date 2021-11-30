@@ -2,7 +2,7 @@
 
 // Client-side javascript for manipulating the DOM and making http requests from the loans page
 
-// Pre-populate the update form when patronID is selected
+// Pre-populate the update form when materialID is selected
 let materialSelector =document.getElementById('update-id');
 
 materialSelector.addEventListener('change', function(){

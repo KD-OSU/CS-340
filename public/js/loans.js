@@ -3,6 +3,38 @@
 // Client-side javascript for manipulating the DOM and making http requests from the loans page
 
 
+// Pre-populate the update form when loanID is selected
+let loanSelector =document.getElementById('update-id');
+
+loanSelector.addEventListener('change', function(){
+    selectedID = loanSelector.value;
+    
+    // get the existing data from relevant table cells 
+    selectedMaterialID = document.getElementById(`${selectedID}materialID`).innerText;
+    selectedPatronID = document.getElementById(`${selectedID}patronID`).innerText;
+    selectedEmployeeID = document.getElementById(`${selectedID}employeeID`).innerText;
+    selectedCheckout = toDateFormat(document.getElementById(`${selectedID}checkout`).innerText);
+    selectedDue = toDateFormat(document.getElementById(`${selectedID}due`).innerText);
+    selectedReturned = toDateFormat(document.getElementById(`${selectedID}returned`).innerText);
+    
+    // get the form inputs
+    materialCell = document.getElementById('update-materialID');
+    patronCell = document.getElementById('update-patronID');
+    employeeCell = document.getElementById('update-employeeID');
+    checkoutCell = document.getElementById('update-checkout');
+    dueCell = document.getElementById('update-due');
+    returnedCell = document.getElementById('update-returned');
+    
+    // pre-populate the form with existing data
+    materialCell.value = selectedMaterialID;
+    patronCell.value = selectedPatronID;
+    employeeCell.value = selectedEmployeeID;
+    checkoutCell.value = selectedCheckout;
+    dueCell.value = selectedDue;
+    returnedCell.value = selectedReturned;
+    
+});
+
 /* 
 
 ADD ROW FUNCTIONALITY

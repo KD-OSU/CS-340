@@ -37,6 +37,9 @@ function toLocalDateTime(dateTime){
  * @returns {string} - date string in format "YYYY-MM-DD"
  */
 function toDateFormat(inDate){
+    // return empty string for incomplete date.
+    if (inDate.length < 8) return "";
+
     let month = inDate.slice(0, 2); 
     let day = inDate.slice(3, 5);
     let year = inDate.slice(6);

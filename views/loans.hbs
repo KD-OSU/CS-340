@@ -7,7 +7,7 @@
           </div>
       </div>
       <div class="row">
-          <div class="col-2">
+          <div class="col-3">
               <label class="form-label">Material:</label>
               <select id="addMaterial" class="form-control mb-3">
                     {{#each materials}}
@@ -15,7 +15,7 @@
                     {{/each}}
                 </select>
           </div>
-          <div class="col-2">
+          <div class="col-3">
               <label class="form-label">Patron:</label>
               <select id="addPatron" class="form-control mb-3">
                     {{#each patrons}}
@@ -23,7 +23,7 @@
                     {{/each}}
                 </select>
           </div>
-          <div class="col-2">
+          <div class="col-3">
               <label class="form-label">Employee:</label>
               <select id="addEmployee" class="form-control mb-3">
                     <option value="">Select an employee (Optional)</option>
@@ -70,15 +70,15 @@
         </div>
       </div>
       <div class="row">
-          <div class="col-2">
+          <div class="col-3">
               <label class="form-label">MaterialID:</label>
-              <select id="update-id" class="form-control mb-3">
+              <select id="update-materialID" class="form-control mb-3">
                     {{#each materials}}
                     <option value="{{this.materialID}}">{{this.materialID}} {{this.title}}</option>
                     {{/each}}
                 </select>
           </div>
-          <div class="col-2">
+          <div class="col-3">
               <label class="form-label">PatronID:</label>
               <select id="update-patronID" class="form-control mb-3">
                     {{#each patrons}}
@@ -86,7 +86,7 @@
                     {{/each}}
                 </select>
           </div>
-          <div class="col-2">
+          <div class="col-3">
               <label class="form-label">EmployeeID:</label>
               <select id="update-employeeID" class="form-control mb-3">
                     <option value="">Select an employee (Optional)</option>
@@ -139,13 +139,13 @@
                 {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
                 {{#each data}}
                 <tr>
-                    <td>{{this.loanID}}</td>
-                    <td>{{this.materialID}}</td>
-                    <td>{{this.patronID}}</td>
-                    <td>{{this.employeeID}}</td>
-                    <td>{{this.checkout}}</td>
-                    <td>{{this.due}}</td>
-                    <td>{{this.returned}}</td>
+                    <td id='{{this.loanID}}loanID'>{{this.loanID}}</td>
+                    <td id='{{this.loanID}}materialID'>{{this.materialID}}</td>
+                    <td id='{{this.loanID}}patronID'>{{this.patronID}}</td>
+                    <td id='{{this.loanID}}employeeID'>{{this.employeeID}}</td>
+                    <td id='{{this.loanID}}checkout'>{{this.checkout}}</td>
+                    <td id='{{this.loanID}}due'>{{this.due}}</td>
+                    <td id='{{this.loanID}}returned'>{{this.returned}}</td>
                 </tr>
                 {{/each}}
         </tbody>
