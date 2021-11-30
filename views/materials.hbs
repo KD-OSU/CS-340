@@ -58,6 +58,7 @@
             <div class="col-4">
                 <label class="form-label">Material:</label>
                 <select id="update-id" class="form-control mb-2">
+                    <option value="">-- select one --</option>
                     {{#each data}}
                     <option value="{{this.materialID}}">{{this.materialID}} {{this.title}}</option>
                     {{/each}}

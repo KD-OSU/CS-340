@@ -2,6 +2,42 @@
 
 // Client-side javascript for manipulating the DOM and making http requests from the loans page
 
+// Pre-populate the update form when patronID is selected
+let materialSelector =document.getElementById('update-id');
+
+materialSelector.addEventListener('change', function(){
+    selectedID = materialSelector.value;
+    
+    // get the existing data from relevant table cells 
+    selectedTitle = document.getElementById(`${selectedID}title`).innerText;
+    selectedAuthor = document.getElementById(`${selectedID}author`).innerText;
+    selectedMedium = document.getElementById(`${selectedID}medium`).innerText;
+    selectedGenre = document.getElementById(`${selectedID}genre`).innerText;
+    selectedAvailableCopies = document.getElementById(`${selectedID}availableCopies`).innerText;
+    selectedTotalCopies = document.getElementById(`${selectedID}totalCopies`).innerText;
+    selectedRestricted = document.getElementById(`${selectedID}restricted`).innerText;
+
+    // get the form inputs
+    titleCell = document.getElementById('update-title');
+    authorCell = document.getElementById('update-author');
+    mediumCell = document.getElementById('update-medium');
+    genreCell = document.getElementById('update-genre');
+    availableCopiesCell = document.getElementById('update-availableCopies');
+    totalCopiesCell = document.getElementById('update-totalCopies');
+    restrictedCell = document.getElementById('update-restricted');
+
+    // pre-populate the form with existing data
+    titleCell.value = selectedTitle;
+    authorCell.value = selectedAuthor;
+    mediumCell.value = selectedMedium;
+    genreCell.value = selectedGenre;
+    availableCopiesCell.value = selectedAvailableCopies;
+    totalCopiesCell.value = selectedTotalCopies;
+    restrictedCell.checked = (selectedRestricted == '1') ? true : false;
+
+});
+
+
 // Updating a material
 let updateMaterialForm = document.getElementById('updateMaterialForm');
 

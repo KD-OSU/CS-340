@@ -2,7 +2,7 @@
 
 // Client-side javascript for manipulating the DOM and making http requests from the patrons page
 
-// Populate update form when patronID is selected
+// Pre-populate the update form when patronID is selected
 let patronSelector =document.getElementById('update-id');
 
 patronSelector.addEventListener('change', function(){
