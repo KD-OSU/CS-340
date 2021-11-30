@@ -28,16 +28,16 @@ VALUES ("Jonathan", "Strange", "1779-01-08", 0),
 -- INSERT syntax for Materials
 INSERT INTO materials (author, title, medium, genre, 
             restricted, availableCopies, totalCopies)
-VALUES ("Terry Pratchet", "The Light Fantastic", "book", "fantasy", 0, 12, 12),
-("J. R. R. Tolkien", "The Silmarillion", "book", "fantasy", 1, 1, 1),
-("Brandon Sanderson", "The Way of Kings", "movie", "science fiction", 0, 0, 0),
-("The Beatles", "Abbey Road", "CD", "classic rock", 0, 3, 2),
-("Leo Tolstoy", "Anna Karenina", "book", "realism", 0, 0, 5),
+VALUES ("Terry Pratchet", "The Light Fantastic", "book", "fantasy", 0, 8, 12),
+("J. R. R. Tolkien", "The Silmarillion", "book", "fantasy", 1, 0, 1),
+("Brandon Sanderson", "The Way of Kings", "movie", "science fiction", 0, 4, 5),
+("The Beatles", "Abbey Road", "CD", "classic rock", 0, 2, 3),
+("Leo Tolstoy", "Anna Karenina", "book", "realism", 0, 4, 5),
 ("Gustave Flaubert", "Madame Bovary", "book", "romance", 0, 3, 5),
-("Frank Darabont", "The ShawShank Redemption", "DVD", "drama", 1, 2, 2),
-("Quentin Tarantino", "Pulp Fiction", "DVD", "comedy", 1, 2, 3),
+("Frank Darabont", "The ShawShank Redemption", "DVD", "drama", 1, 1, 2),
+("Quentin Tarantino", "Pulp Fiction", "DVD", "comedy", 1, 3, 3),
 ("Marvin Gaye", "What's Going On", "CD", "R&B", 0, 4, 4),
-("The Beach Boys", "Pet Sounds", "CD", "Rock", 0, 3, 3)
+("The Beach Boys", "Pet Sounds", "CD", "Rock", 0, 2, 3)
 ;
 
 -- INSERT syntax for Holds
