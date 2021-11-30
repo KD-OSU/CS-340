@@ -11,7 +11,7 @@
                 <label class="form-label">Material:</label>
                 <select id="addMaterialID" class="form-control mb-2">
                     {{#each materials}}
-                    <option value="{{this.materialID}}">{{this.title}}, {{this.author}}</option>
+                    <option value="{{this.materialID}}">{{this.materialID}} {{this.title}}, {{this.author}}</option>
                     {{/each}}
                 </select>
             </div>
@@ -19,7 +19,7 @@
                 <label class="form-label">Patron:</label>
                 <select id="addPatronID" class="form-control mb-2">
                     {{#each patrons}}
-                    <option value="{{this.patronID}}">{{this.fName}} {{this.lName}}</option>
+                    <option value="{{this.patronID}}">{{this.patronID}} {{this.fName}} {{this.lName}}</option>
                     {{/each}}
                 </select>
             </div>
@@ -28,7 +28,7 @@
                 <select id="addEmployeeID" class="form-control mb-2">
                     <option value="">Select an employee (Optional)</option>
                     {{#each employees}}
-                    <option value="{{this.employeeID}}">{{this.fName}} {{this.lName}}</option>
+                    <option value="{{this.employeeID}}">{{this.employeeID}} {{this.fName}} {{this.lName}}</option>
                     {{/each}}
                 </select>
             </div>
@@ -64,7 +64,7 @@
               <label class="form-label">Material:</label>
               <select id="updateMaterialID" class="form-control mb-2">
                     {{#each materials}}
-                    <option value="{{this.materialID}}">{{this.title}}, {{this.author}}</option>
+                    <option value="{{this.materialID}}">{{this.materialID}} {{this.title}}, {{this.author}}</option>
                     {{/each}}
                </select>
           </div>
@@ -72,7 +72,7 @@
               <label class="form-label">Patron:</label>
               <select id="updatePatronID" class="form-control mb-2">
                     {{#each patrons}}
-                    <option value="{{this.patronID}}">{{this.fName}} {{this.lName}}</option>
+                    <option value="{{this.patronID}}">{{this.patronID}} {{this.fName}} {{this.lName}}</option>
                     {{/each}}
               </select>
           </div>
@@ -81,7 +81,7 @@
               <select id="updateEmployeeID" class="form-control mb-2">
                     <option value="">Select an employee (Optional)</option>
                     {{#each employees}}
-                    <option value="{{this.employeeID}}">{{this.fName}} {{this.lName}}</option>
+                    <option value="{{this.employeeID}}">{{this.employeeID}} {{this.fName}} {{this.lName}}</option>
                     {{/each}}
                </select>
           </div>
@@ -94,7 +94,7 @@
       </div>
       <div class="row">
           <div class="col-2">
-              <button type="button" class="btn btn-primary" id="submit">Update</button>
+              <button type="submit" class="btn btn-primary" id="update">Update</button>
           </div>
       </div>
   </form>    

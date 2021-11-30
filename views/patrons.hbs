@@ -55,21 +55,26 @@
           </div>
       </div>
       <div class="row">
-        <div class="col-2">
-          <label class="form-label">PatronID:</label>
-          <input type="text" id="update-id" class="form-control mb-2" placeholder="###" required>
+        <div class="col-3">
+          <label class="form-label">Patron:</label>
+          <select id="update-id" class="form-control mb-2">
+                    <option value="">-- select one --</option>
+                    {{#each data}}
+                    <option value="{{this.patronID}}">{{this.patronID}} {{this.fName}}, {{this.lName}}</option>
+                    {{/each}}
+                </select>
         </div>
           <div class="col-4">
               <label class="form-label">First Name:</label>
-              <input type="text" id="update-fName" class="form-control mb-2" placeholder="Jane">
+              <input type="text" id="update-fName" class="form-control mb-2" value="" placeholder="Jane">
           </div>
           <div class="col-4">
               <label class="form-label">Last Name:</label>
-              <input type="text" id="update-lName" class="form-control mb-2" placeholder="Doe" >
+              <input type="text" id="update-lName" class="form-control mb-2" value="" placeholder="Doe" >
           </div>
           <div class="col-3">
               <label class="form-label">Birth Date:</label>
-              <input type="date" id="update-birthDate" class="form-control mb-2">
+              <input type="date" id="update-birthDate" class="form-control mb-2" value="" >
           </div>
           <div class="col-1">
             <label class="form-check-label" for="restricted">Flagged:</label>

@@ -2,8 +2,38 @@
 
 // Client-side javascript for manipulating the DOM and making http requests from the patrons page
 
+// Pre-populate the update form when patronID is selected
+let patronSelector =document.getElementById('update-id');
+
+patronSelector.addEventListener('change', function(){
+    console.log('triggered');
+    selectedID = patronSelector.value;
+    
+    // get the existing data from relevant table cells 
+    selectedfName = document.getElementById(`${selectedID}fName`).innerText;
+    selectedlName = document.getElementById(`${selectedID}lName`).innerText;
+    selectedBirthDate = toDateFormat(document.getElementById(`${selectedID}birthDate`).innerText);
+    selectedFlagged = document.getElementById(`${selectedID}flagged`).innerText;
+
+    // get the form inputs
+    fNameCell =document.getElementById('update-fName');
+    lNameCell =document.getElementById('update-lName');
+    birthDateCell =document.getElementById('update-birthDate');
+    flaggedCell =document.getElementById('update-flagged');
+
+    console.log (fNameCell);
+
+    // pre-populate the form with existing data
+    fNameCell.value = selectedfName;
+    lNameCell.value = selectedlName;
+    birthDateCell.value = selectedBirthDate;
+    flaggedCell.checked = (selectedFlagged == '1') ? true : false;
+
+});
+
 // Updating a patron
 let updatePatronForm = document.getElementById('updatePatronForm');
+                               document.getElementById
 
 updatePatronForm.addEventListener("submit", function(e) {
     e.preventDefault();

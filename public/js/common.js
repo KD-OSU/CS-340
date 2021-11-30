@@ -29,5 +29,16 @@ function toLocalDateTime(dateTime){
     } else {
         return ''
     }
-    
+}
+
+/**
+ * Converts a date string from "MM/DD/YYYY" to "YYYY-MM-DD" format
+ *  @param {string} inDate - date string in format "MM/DD/YYYY"
+ * @returns {string} - date string in format "YYYY-MM-DD"
+ */
+function toDateFormat(inDate){
+    let month = inDate.slice(0, 2); 
+    let day = inDate.slice(3, 5);
+    let year = inDate.slice(6);
+    return `${year}-${month}-${day}`;
 }

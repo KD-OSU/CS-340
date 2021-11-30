@@ -2,6 +2,126 @@
 
 // Client-side javascript for manipulating the DOM and making http requests from the loans page
 
+// Pre-populate the update form when patronID is selected
+let materialSelector =document.getElementById('update-id');
+
+materialSelector.addEventListener('change', function(){
+    selectedID = materialSelector.value;
+    
+    // get the existing data from relevant table cells 
+    selectedTitle = document.getElementById(`${selectedID}title`).innerText;
+    selectedAuthor = document.getElementById(`${selectedID}author`).innerText;
+    selectedMedium = document.getElementById(`${selectedID}medium`).innerText;
+    selectedGenre = document.getElementById(`${selectedID}genre`).innerText;
+    selectedAvailableCopies = document.getElementById(`${selectedID}availableCopies`).innerText;
+    selectedTotalCopies = document.getElementById(`${selectedID}totalCopies`).innerText;
+    selectedRestricted = document.getElementById(`${selectedID}restricted`).innerText;
+
+    // get the form inputs
+    titleCell = document.getElementById('update-title');
+    authorCell = document.getElementById('update-author');
+    mediumCell = document.getElementById('update-medium');
+    genreCell = document.getElementById('update-genre');
+    availableCopiesCell = document.getElementById('update-availableCopies');
+    totalCopiesCell = document.getElementById('update-totalCopies');
+    restrictedCell = document.getElementById('update-restricted');
+
+    // pre-populate the form with existing data
+    titleCell.value = selectedTitle;
+    authorCell.value = selectedAuthor;
+    mediumCell.value = selectedMedium;
+    genreCell.value = selectedGenre;
+    availableCopiesCell.value = selectedAvailableCopies;
+    totalCopiesCell.value = selectedTotalCopies;
+    restrictedCell.checked = (selectedRestricted == '1') ? true : false;
+
+});
+
+
+// Updating a material
+let updateMaterialForm = document.getElementById('updateMaterialForm');
+
+updateMaterialForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Form inputs
+    let inputID = document.getElementById('update-id');
+    let inputTitle = document.getElementById('update-title');
+    let inputAuthor = document.getElementById('update-author');
+    let inputMedium = document.getElementById('update-medium');
+    let inputGenre = document.getElementById('update-genre');
+    let inputAvailableCopies = document.getElementById('update-availableCopies');
+    let inputTotalCopies = document.getElementById('update-totalCopies');
+    let inputRestricted = document.getElementById('update-restricted');
+
+
+    // Input values
+    let inputIDValue = inputID.value;
+    let titleValue = inputTitle.value;
+    let authorValue = inputAuthor.value;
+    let mediumValue = inputMedium.value;
+    let genreValue = inputGenre.value;
+    let availableCopiesValue = inputAvailableCopies.value;
+    let totalCopiesValue = inputTotalCopies.value;
+    // The checkboxes don't have a value, they just have a 'checked' property
+    let restrictedValue = inputRestricted.checked ? 1 : 0;
+
+    // Create object
+    let data = {
+        id : inputIDValue,
+        title: titleValue,
+        author: authorValue,
+        medium: mediumValue,
+        genre: genreValue,
+        availableCopies: availableCopiesValue,
+        totalCopies: totalCopiesValue,
+        restricted: restrictedValue
+    };
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", `/materials/${inputIDValue}`, true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    // Tell ajax request how to resolve
+    xhttp.onreadystatechange = () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            // Update existing row in table
+            updateTableRow(xhttp.response);
+
+        }
+        else if (xhttp.readyState == 4 && xhttp.status != 200) {
+            console.log("There was an error with the input.")
+        }
+    }
+
+    // Send request and wait for response
+    xhttp.send(JSON.stringify(data));
+})
+
+updateTableRow = (data) => {
+    
+    let updatedRow = JSON.parse(data)[0];               // Get updated results from db
+    
+
+    idCell = document.getElementById(`${updatedRow.materialID}ID`);
+    titleCell = document.getElementById(`${updatedRow.materialID}title`);
+    authorCell = document.getElementById(`${updatedRow.materialID}author`);
+    mediumCell = document.getElementById(`${updatedRow.materialID}medium`);
+    availableCopiesCell = document.getElementById(`${updatedRow.materialID}availableCopies`);
+    totalCopiesCell = document.getElementById(`${updatedRow.materialID}totalCopies`);
+    genreCell = document.getElementById(`${updatedRow.materialID}genre`);
+    restrictedCell = document.getElementById(`${updatedRow.materialID}restricted`);
+
+    // Fill cells with data
+    idCell.innerText = updatedRow.materialID;
+    titleCell.innerText = updatedRow.title;
+    authorCell.innerText = updatedRow.author;
+    mediumCell.innerText = updatedRow.medium;
+    genreCell.innerText = updatedRow.genre;
+    availableCopiesCell.innerText = updatedRow.availableCopies;
+    totalCopiesCell.innerText = updatedRow.totalCopies;
+    restrictedCell.innerText = updatedRow.restricted;
+}
 
 /* 
 

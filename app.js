@@ -158,8 +158,6 @@ app.put('/patrons/:id', function(req, res){
 
 
 
-
-
 /* ----- EMPLOYEES ----- */
 app.get('/employees', function(req, res)
     {
@@ -298,6 +296,39 @@ app.post('/materials', function(req, res)
         });
     }
 );
+
+// Update an existing material
+app.put('/materials/:id', function(req, res){
+    // Update material with the new information
+    let data = req.body;
+    console.log(data);
+    var query2 = "UPDATE materials SET author=?, title=?, medium=?, genre=?, availableCopies=?, totalCopies=?, restricted=? WHERE materialID=?";
+    var query2Inserts = [data.author, data.title, data.medium, data.genre, 
+                        data.availableCopies, data.totalCopies, data.restricted, data.id];
+    query2 = db.pool.query(query2, query2Inserts, function(error, results, fields){
+        if (error) {
+            console.log(error);
+            res.write(JSON.stringify(error));
+            res.end();
+        } else {
+            // Send back the information about this material for displaying the new data in the row
+            query3 = "SELECT * FROM materials WHERE materialID = ?"
+            query3Inserts = [data.id];
+            query3 = db.pool.query(query3, query3Inserts, function(error, rows, fields){
+                if (error)
+                {
+                    console.log(error);
+                    res.send(400);
+                }
+                else
+                {
+                    res.status(200);
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
 
 /* ----- LOANS ----- */
 app.get('/loans', function(req, res)
