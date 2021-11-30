@@ -113,7 +113,7 @@ updateTableRow = (data) => {
     restrictedCell = document.getElementById(`${updatedRow.materialID}restricted`);
 
     // Fill cells with data
-    idCell.innerText = updatedRow.patronID;
+    idCell.innerText = updatedRow.materialID;
     titleCell.innerText = updatedRow.title;
     authorCell.innerText = updatedRow.author;
     mediumCell.innerText = updatedRow.medium;
