@@ -71,11 +71,13 @@ app.post('/patrons', function(req, res)
         if (lName == '')
         {
             data.lName = 'NULL';
+        } else {
+            data.lName = `'${data.lName}'`          // Quote last name so that nulls can be properly handled
         }
 
         // Generate query for sending to db
 
-        query1 = `INSERT INTO patrons (fname, lname, birthDate, flagged) VALUES ('${data.fName}', '${data.lName}', '${data.birthDate}', 0)`;
+        query1 = `INSERT INTO patrons (fname, lname, birthDate, flagged) VALUES ('${data.fName}', ${data.lName}, '${data.birthDate}', 0)`;
         db.pool.query(query1, function(error, rows, fields){
             if (error)
             {
@@ -171,10 +173,15 @@ app.get('/employees', function(req, res)
 app.post('/employees', function(req, res)
     {
         let data = req.body;
+        data.fName = `'${data.fName}'`
         let lName = data.lName;                     // Handle null for last name
         if (lName == '')
         {
             data.lName = 'NULL';
+        }
+        else
+        {
+            data.lName = `'${data.lName}'`
         }
 
         let position = data.position;                     // Handle null for position
@@ -182,16 +189,25 @@ app.post('/employees', function(req, res)
         {
             data.position = 'NULL';
         }
+        else
+        {
+            data.position = `'${data.position}'`
+        }
+
 
         let startDate = data.startDate;                     // Handle null for last name
         if (startDate == '')
         {
             data.startDate = 'NULL';
         }
+        else
+        {
+            data.startDate = `'${data.startDate}'`
+        }
 
         // Generate query for sending to db
 
-        query1 = `INSERT INTO employees (fname, lname, startDate, position) VALUES ('${data.fName}', '${data.lName}', '${data.startDate}', '${data.position}')`;
+        query1 = `INSERT INTO employees (fname, lname, startDate, position) VALUES (${data.fName}, ${data.lName}, ${data.startDate}, ${data.position})`;
         db.pool.query(query1, function(error, rows, fields){
             if (error)
             {
@@ -233,14 +249,29 @@ app.get('/materials', function(req, res)
 app.post('/materials', function(req, res)
     {
         let data = req.body;                                  // Capture incoming data for manipulation
-        let employeeID = data.employeeID;                     // Handle null for employee name
-        if (employeeID == '')
-        {
-            data.employeeID = 'NULL';
+        // genre
+        if (data.author == '') {                              // Handle nulls for author
+            data.author = 'NULL'
+        } else {
+            data.author = `'${data.author}'`
         }
+
+        if (data.title == '') {                              // Handle nulls for author
+            data.title = 'NULL'
+        } else {
+            data.title = `'${data.title}'`
+        }
+
+        if (data.genre == '') {                              // Handle nulls for author
+            data.genre = 'NULL'
+        } else {
+            data.genre = `'${data.genre}'`
+        }
+
+        
         // Generate query for sending to db
         query1 = `INSERT INTO materials (author, title, medium, genre, restricted, availableCopies, totalCopies) 
-                  VALUES ('${data.author}', '${data.title}', '${data.medium}', '${data.genre}', ${data.restricted}, ${data.copies}, ${data.copies});`;
+                  VALUES (${data.author}, ${data.title}, '${data.medium}', ${data.genre}, ${data.restricted}, ${data.copies}, ${data.copies});`;
         db.pool.query(query1, function(error, rows, fields){
             if (error)
             {
