@@ -45,3 +45,58 @@ function toDateFormat(inDate){
     let year = inDate.slice(6);
     return `${year}-${month}-${day}`;
 }
+
+/**
+ * Converts a datetime string from "MM/DD/YYYY 07:17:00 AM" to "yyyy-MM-ddThh:mm:ss" format
+ *  @param {string} inDate - date string in format "MM/DD/YYYY"
+ * @returns {string} - date string in format "YYYY-MM-DD"
+ */
+ function toDateTimeFormat(inDate){
+    // return empty string for incomplete date.
+    if (inDate.length < 8) return "";
+
+    let month = inDate.slice(0, 2); 
+    let day = inDate.slice(3, 5);
+    let year = inDate.slice(6, 10);
+    let hour = inDate.slice(11, 13);
+    let min = inDate.slice(14, 16);
+    let sec = inDate.slice(17, 19);
+    let ampm = inDate.slice(20, 21)
+
+    //convert to 24hour time
+    hour = to24Hour(parseInt(hour), ampm);
+
+    return `${year}-${month}-${day}T${hour}:${min}:${sec}`;
+}
+
+/**
+ * Convert an hour integer from 12 hour to string 24 hour. 
+ *  @param {int} hour - hour integer in 12 hour format
+ *  @param {str} ampm - str 'a' for am and 'p' for pm.
+ * @returns {str} - hour string in format "HH"
+ */
+function to24Hour(hour, ampm){
+    // handle noon and midnight
+    //console.log(hour);
+    //console.log(ampm);
+    let result = ""
+    if (hour == 12)
+    {
+        if (ampm == 'P') result = "12";
+        else result = "00";
+    }
+    else
+    {
+        if (ampm == 'A')
+        {
+            result = hour.toString();
+            result = result.padStart(2, '0');
+        }
+        else
+        {
+            hour += 12;
+            result = hour.toString();
+        }
+    }
+    return result;
+}

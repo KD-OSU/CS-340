@@ -52,7 +52,8 @@
       <div class="row">
         <div class="col-2">
           <label class="form-label">holdID:</label>
-          <select id="updateHoldID" class="form-control mb-2">
+          <select id="update-id" class="form-control mb-2">
+                    <option value="">-- select one --</option>
                     {{#each data}}
                     <option value="{{this.holdID}}">{{this.holdID}}</option>
                     {{/each}}
@@ -62,7 +63,7 @@
       <div class="row">
           <div class="col-4">
               <label class="form-label">Material:</label>
-              <select id="updateMaterialID" class="form-control mb-2">
+              <select id="update-materialID" class="form-control mb-2">
                     {{#each materials}}
                     <option value="{{this.materialID}}">{{this.materialID}} {{this.title}}, {{this.author}}</option>
                     {{/each}}
@@ -70,7 +71,7 @@
           </div>
           <div class="col-4">
               <label class="form-label">Patron:</label>
-              <select id="updatePatronID" class="form-control mb-2">
+              <select id="update-patronID" class="form-control mb-2">
                     {{#each patrons}}
                     <option value="{{this.patronID}}">{{this.patronID}} {{this.fName}} {{this.lName}}</option>
                     {{/each}}
@@ -78,7 +79,7 @@
           </div>
           <div class="col-4">
               <label class="form-label">Employee:</label>
-              <select id="updateEmployeeID" class="form-control mb-2">
+              <select id="update-employeeID" class="form-control mb-2">
                     <option value="">Select an employee (Optional)</option>
                     {{#each employees}}
                     <option value="{{this.employeeID}}">{{this.employeeID}} {{this.fName}} {{this.lName}}</option>
@@ -87,9 +88,9 @@
           </div>
         </div>
       <div class="row">
-          <div class="col-3">
+          <div class="col-4">
               <label class="form-label">created:</label>
-              <input type="datetime-local" id="updateCreated" class="form-control mb-2">
+              <input type="datetime-local" id="update-created" class="form-control mb-2">
           </div>
       </div>
       <div class="row">
@@ -122,11 +123,11 @@
                 {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
                 {{#each data}}
                 <tr id="{{this.holdID}}">
-                    <td>{{this.holdID}}</td>
-                    <td>{{this.created}}</td>
-                    <td>{{this.materialID}}</td>
-                    <td>{{this.patronID}}</td>
-                    <td>{{this.employeeID}}</td>
+                    <td id='{{this.holdID}}holdID'>{{this.holdID}}</td>
+                    <td id='{{this.holdID}}created'>{{this.created}}</td>
+                    <td id='{{this.holdID}}materialID'>{{this.materialID}}</td>
+                    <td id='{{this.holdID}}patronID'>{{this.patronID}}</td>
+                    <td id='{{this.holdID}}employeeID'>{{this.employeeID}}</td>
                     <td class="delete"><button type="button" class="btn btn-outline-danger" deleteId={{this.holdID}}>Delete</button></td>
                 </tr>
                 {{/each}}

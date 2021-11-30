@@ -3,6 +3,32 @@
 // Client-side javascript for manipulating the DOM and making http requests from the holds page
 
 
+// Pre-populate the update form when loanID is selected
+let holdSelector =document.getElementById('update-id');
+
+holdSelector.addEventListener('change', function(){
+    selectedID = holdSelector.value;
+    
+    // get the existing data from relevant table cells 
+    selectedMaterialID = document.getElementById(`${selectedID}materialID`).innerText;
+    selectedPatronID = document.getElementById(`${selectedID}patronID`).innerText;
+    selectedEmployeeID = document.getElementById(`${selectedID}employeeID`).innerText;
+    selectedCreated = toDateTimeFormat(document.getElementById(`${selectedID}created`).innerText);
+
+    // get the form inputs
+    materialCell = document.getElementById('update-materialID');
+    patronCell = document.getElementById('update-patronID');
+    employeeCell = document.getElementById('update-employeeID');
+    createdCell = document.getElementById('update-created');
+    
+    // pre-populate the form with existing data
+    materialCell.value = selectedMaterialID;
+    patronCell.value = selectedPatronID;
+    employeeCell.value = selectedEmployeeID;
+    createdCell.value = selectedCreated;
+    
+});
+
 /* 
 
 ADD ROW FUNCTIONALITY

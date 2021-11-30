@@ -63,6 +63,7 @@
         <div class="col-2">
           <label class="form-label">loanID:</label>
           <select id="update-id" class="form-control mb-2">
+                    <option value="">-- select one --</option>
                     {{#each data}}
                     <option value="{{this.loanID}}">{{this.loanID}}</option>
                     {{/each}}
