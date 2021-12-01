@@ -17,7 +17,7 @@ app.engine('.hbs', exphbs({                             // Create an instance of
 app.set('view engine', '.hbs'); 
 var db = require('./database/db-connector')             // Bring in the db credentials and pool generator
 
-PORT        = 1875;                                     // Port number for the app
+PORT        = 1877;                                     // Port number for the app
 
 // Static Files
 app.use(express.static('public'));
@@ -396,6 +396,43 @@ app.post('/loans', function(req, res)
         });
     }
 );
+
+// Update an existing material
+app.put('/loans/:id', function(req, res){
+    // Update material with the new information
+    let data = req.body;
+
+    // handle null for employeeID
+    if (data.employeeID == '') data.employeeID = 'NULL';
+    else data.employeeID = `'${data.employeeID}'`
+
+    var query2 = `UPDATE loans SET materialID=?, patronID=?, employeeID=${data.employeeID}, checkout=?, due=?, returned=? WHERE loanID=?`;
+    var query2Inserts = [data.materialID, data.patronID, data.checkout, 
+                        data.due, data.returned, data.id];
+    query2 = db.pool.query(query2, query2Inserts, function(error, results, fields){
+        if (error) {
+            console.log(error);
+            res.write(JSON.stringify(error));
+            res.end();
+        } else {
+            // Send back the information about this material for displaying the new data in the row
+            query3 = "SELECT * FROM loans WHERE loanID = ?"
+            query3Inserts = [data.id];
+            query3 = db.pool.query(query3, query3Inserts, function(error, rows, fields){
+                if (error)
+                {
+                    console.log(error);
+                    res.send(400);
+                }
+                else
+                {
+                    res.status(200);
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
 
 /* ----- HOLDS ----- */
 

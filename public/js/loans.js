@@ -35,6 +35,85 @@ loanSelector.addEventListener('change', function(){
     
 });
 
+// Updating a material
+let updateLoanForm = document.getElementById('updateLoanForm');
+
+updateLoanForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Form inputs
+    let inputID = document.getElementById('update-id');
+    let inputMaterialID = document.getElementById('update-materialID');
+    let inputPatronID = document.getElementById('update-patronID');
+    let inputEmployeeID = document.getElementById('update-employeeID');
+    let inputCheckout = document.getElementById('update-checkout');
+    let inputDue = document.getElementById('update-due');
+    let inputReturned = document.getElementById('update-returned');
+    
+    // Input values
+    let inputIDValue = inputID.value;
+    let materialValue = inputMaterialID.value;
+    let patronValue = inputPatronID.value;
+    let employeeValue = inputEmployeeID.value;
+    let checkoutValue = inputCheckout.value;
+    let dueValue = inputDue.value;
+    let returnedValue = inputReturned.value;
+    
+    // Create object
+    let data = {
+        id : inputIDValue,
+        materialID: materialValue,
+        patronID: patronValue,
+        employeeID: employeeValue,
+        checkout: checkoutValue,
+        due: dueValue,
+        returned: returnedValue
+    };
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", `/loans/${inputIDValue}`, true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    // Tell ajax request how to resolve
+    xhttp.onreadystatechange = () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            // Update existing row in table
+            updateTableRow(xhttp.response);
+
+        }
+        else if (xhttp.readyState == 4 && xhttp.status != 200) {
+            console.log("There was an error with the input.")
+        }
+    }
+
+    // Send request and wait for response
+    xhttp.send(JSON.stringify(data));
+})
+
+updateTableRow = (data) => {
+    
+    let updatedRow = JSON.parse(data)[0];               // Get updated results from db
+    
+    console.log(updatedRow.loanID);
+
+    idCell = document.getElementById(`${updatedRow.loanID}ID`);
+    materialCell = document.getElementById(`${updatedRow.loanID}materialID`);
+    patronCell = document.getElementById(`${updatedRow.loanID}patronID`);
+    employeeCell = document.getElementById(`${updatedRow.loanID}employeeID`);
+    checkoutCell = document.getElementById(`${updatedRow.loanID}checkout`);
+    dueCell = document.getElementById(`${updatedRow.loanID}due`);
+    returnedCell = document.getElementById(`${updatedRow.loanID}returned`);
+
+    // Fill cells with data
+    idCell.innerText = updatedRow.loanID;
+    materialCell.innerText = updatedRow.materialID;
+    patronCell.innerText = updatedRow.patronID;
+    employeeCell.innerText = updatedRow.employeeID;
+    checkoutCell.innerText = toLocalDate(updatedRow.checkout);
+    dueCell.innerText = toLocalDate(updatedRow.due);
+    returnedCell.innerText = toLocalDate(updatedRow.returned);
+    }
+
 /* 
 
 ADD ROW FUNCTIONALITY

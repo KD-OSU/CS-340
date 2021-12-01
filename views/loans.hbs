@@ -51,8 +51,8 @@
   </form>    
 </div>
 
-<!-- 'UPDATE' Form Content-- This will eventually need to submit somewhere for real-->
-<div class="border container w-75 bg-light align-items-center gy-5" id="addMaterial">
+<!-- 'UPDATE' Form Content- This will eventually need to submit somewhere for real-->
+<div class="border container w-75 bg-light align-items-center gy-5" id="updateLoanForm">
   <form class="m-3" name="add">
       <div class="row">
           <div class="col">
@@ -140,7 +140,7 @@
                 {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
                 {{#each data}}
                 <tr>
-                    <td id='{{this.loanID}}loanID'>{{this.loanID}}</td>
+                    <td id='{{this.loanID}}ID'>{{this.loanID}}</td>
                     <td id='{{this.loanID}}materialID'>{{this.materialID}}</td>
                     <td id='{{this.loanID}}patronID'>{{this.patronID}}</td>
                     <td id='{{this.loanID}}employeeID'>{{this.employeeID}}</td>
