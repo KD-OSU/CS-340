@@ -35,7 +35,7 @@ loanSelector.addEventListener('change', function(){
     
 });
 
-// Updating a material
+// Updating a loan
 let updateLoanForm = document.getElementById('updateLoanForm');
 
 updateLoanForm.addEventListener("submit", function(e) {
@@ -112,7 +112,7 @@ updateTableRow = (data) => {
     checkoutCell.innerText = toLocalDate(updatedRow.checkout);
     dueCell.innerText = toLocalDate(updatedRow.due);
     returnedCell.innerText = toLocalDate(updatedRow.returned);
-    }
+}
 
 /* 
 
