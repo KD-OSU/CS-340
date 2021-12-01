@@ -29,6 +29,73 @@ holdSelector.addEventListener('change', function(){
     
 });
 
+// Updating a hold
+let updateHoldForm = document.getElementById('updateHoldForm');
+
+updateHoldForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Form inputs
+    let inputID = document.getElementById('update-id');
+    let inputMaterialID = document.getElementById('update-materialID');
+    let inputPatronID = document.getElementById('update-patronID');
+    let inputEmployeeID = document.getElementById('update-employeeID');
+    let inputCreated = document.getElementById('update-created');
+    
+    // Input values
+    let inputIDValue = inputID.value;
+    let materialValue = inputMaterialID.value;
+    let patronValue = inputPatronID.value;
+    let employeeValue = inputEmployeeID.value;
+    let createdValue = inputCreated.value;
+    
+    // Create object
+    let data = {
+        id : inputIDValue,
+        materialID: materialValue,
+        patronID: patronValue,
+        employeeID: employeeValue,
+        created: createdValue
+    };
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", `/holds/${inputIDValue}`, true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    // Tell ajax request how to resolve
+    xhttp.onreadystatechange = () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            // Update existing row in table
+            updateTableRow(xhttp.response);
+
+        }
+        else if (xhttp.readyState == 4 && xhttp.status != 200) {
+            console.log("There was an error with the input.")
+        }
+    }
+
+    // Send request and wait for response
+    xhttp.send(JSON.stringify(data));
+})
+
+updateTableRow = (data) => {
+    
+    let updatedRow = JSON.parse(data)[0];               // Get updated results from db
+
+    idCell = document.getElementById(`${updatedRow.holdID}ID`);
+    materialCell = document.getElementById(`${updatedRow.holdID}materialID`);
+    patronCell = document.getElementById(`${updatedRow.holdID}patronID`);
+    employeeCell = document.getElementById(`${updatedRow.holdID}employeeID`);
+    createdCell = document.getElementById(`${updatedRow.holdID}created`);
+    
+    // Fill cells with data
+    idCell.innerText = updatedRow.holdID;
+    materialCell.innerText = updatedRow.materialID;
+    patronCell.innerText = updatedRow.patronID;
+    employeeCell.innerText = updatedRow.employeeID;
+    createdCell.innerText = toLocalDateTime(updatedRow.created);
+}
+
 /* 
 
 ADD ROW FUNCTIONALITY

@@ -17,7 +17,7 @@ app.engine('.hbs', exphbs({                             // Create an instance of
 app.set('view engine', '.hbs'); 
 var db = require('./database/db-connector')             // Bring in the db credentials and pool generator
 
-PORT        = 1877;                                     // Port number for the app
+PORT        = 1875;                                     // Port number for the app
 
 // Static Files
 app.use(express.static('public'));
@@ -397,7 +397,7 @@ app.post('/loans', function(req, res)
     }
 );
 
-// Update an existing material
+// Update an existing loan
 app.put('/loans/:id', function(req, res){
     // Update material with the new information
     let data = req.body;
@@ -415,7 +415,7 @@ app.put('/loans/:id', function(req, res){
             res.write(JSON.stringify(error));
             res.end();
         } else {
-            // Send back the information about this material for displaying the new data in the row
+            // Send back the information about this loan for displaying the new data in the row
             query3 = "SELECT * FROM loans WHERE loanID = ?"
             query3Inserts = [data.id];
             query3 = db.pool.query(query3, query3Inserts, function(error, rows, fields){
@@ -503,6 +503,7 @@ app.post('/holds', function(req, res)
     }
 );
 
+// Delete an existing hold
 app.delete('/holds/:id', function(req, res){
     var query1 = "DELETE FROM holds WHERE holdID = ?";
     var inserts = [req.params.id];
@@ -514,6 +515,42 @@ app.delete('/holds/:id', function(req, res){
             res.end();
         } else {
             res.status(202).end();
+        }
+    })
+});
+
+// Update an existing hold
+app.put('/holds/:id', function(req, res){
+    // Update material with the new information
+    let data = req.body;
+
+    // handle null for employeeID
+    if (data.employeeID == '') data.employeeID = 'NULL';
+    else data.employeeID = `'${data.employeeID}'`
+
+    var query2 = `UPDATE holds SET materialID=?, patronID=?, employeeID=${data.employeeID}, created=? WHERE holdID=?`;
+    var query2Inserts = [data.materialID, data.patronID, data.created, data.id];
+    query2 = db.pool.query(query2, query2Inserts, function(error, results, fields){
+        if (error) {
+            console.log(error);
+            res.write(JSON.stringify(error));
+            res.end();
+        } else {
+            // Send back the information about this hold for displaying the new data in the row
+            query3 = "SELECT * FROM holds WHERE holdID = ?"
+            query3Inserts = [data.id];
+            query3 = db.pool.query(query3, query3Inserts, function(error, rows, fields){
+                if (error)
+                {
+                    console.log(error);
+                    res.send(400);
+                }
+                else
+                {
+                    res.status(200);
+                    res.send(rows);
+                }
+            })
         }
     })
 });
