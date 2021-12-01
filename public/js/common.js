@@ -9,8 +9,9 @@
  */
 function toLocalDate(date){
     if (date) {
+        console.log(date);
         localDate = new Date(Date.parse(date));
-        return localDate.toLocaleDateString('en-US');
+        return localDate.toLocaleDateString('en-US', {month: '2-digit', day: '2-digit', year:'numeric'});
     } else {
         return ''
     }
