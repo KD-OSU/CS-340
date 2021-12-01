@@ -17,7 +17,7 @@ app.engine('.hbs', exphbs({                             // Create an instance of
 app.set('view engine', '.hbs'); 
 var db = require('./database/db-connector')             // Bring in the db credentials and pool generator
 
-PORT        = 1877;                                     // Port number for the app
+PORT        = 1875;                                     // Port number for the app
 
 // Static Files
 app.use(express.static('public'));
