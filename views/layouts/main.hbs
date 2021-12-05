@@ -1,5 +1,5 @@
-<!-- COPY BELOW INTO NEW HTML FILE-->
-<!-- TURN THIS INTO HANDLEBARS LATER TO MAKE THIS EASIER-->
+<!-- Main layout for pages - primarily contains the navbar, website title, and brings in bootstrap css/js -->
+
 <!doctype html>
 <html>
 <head>
@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<!-- NAVBAR HERE-->
+	<!-- Navbar with each page listed-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">AllCaps Library</a>
@@ -38,7 +38,7 @@
     </div>
   </nav>
 
-<!-- CONTENT GOES BELOW THIS LINE-->
+<!-- Page content from individual hbs vies will go here-->
 <div class="row gy-3">
   {{{ body }}}
 </div>
