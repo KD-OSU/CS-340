@@ -1,4 +1,4 @@
-<!-- Form Content-- This will eventually need to submit somewhere for real-->
+<!-- Form to add a new Employee -->
 <div class="border container w-100 bg-light align-items-center g-5" id="addEmployeeForm">
   <form class="m-3" name="add">
       <div class="row">
@@ -9,35 +9,36 @@
       <div class="row">
           <div class="col-3">
               <label class="form-label">First Name:</label>
-              <input type="text" id="fName" class="form-control mb-2" placeholder="John" required>
+              <input type="text" id="fName" class="form-control" placeholder="John" required>
+              <small class="form-text text-muted">Required</small>
           </div>
           <div class="col-3">
               <label class="form-label">Last Name:</label>
-              <input type="text" id="lName" class="form-control mb-2" placeholder="Doe">
+              <input type="text" id="lName" class="form-control" placeholder="Doe">
           </div>
           <div class="col-3">
               <label class="form-label">Position:</label>
-              <input type="text" id="position" class="form-control mb-2" placeholder="Manager">
+              <input type="text" id="position" class="form-control" placeholder="Manager">
 
           </div>
           <div class="col-3">
               <label class="form-label">Start Date:</label>
-              <input type="date" id="startDate" class="form-control mb-2">
+              <input type="date" id="startDate" class="form-control">
           </div>
-          <div class="col-2">
+          <div class="col-2 gy-3">
               <button type="submit" class="btn btn-primary" id="submit">Submit</button>
           </div>
       </div>
   </form>  
   </div>  
 
+<!-- Employee Table -->
 <div class="row gy-4 justify-content-center">
     <div class="col-11">
         <table class="table" id="employeesTable">
-            {{!-- Header section --}}
+            <!-- Header section -->
             <thead>
-                {{!-- For just the first row, we print each key of the row object as a header cell so we
-                know what each column means when the page renders --}}
+                <!-- For the first row, print the name of eaach column (coming directly from the db), as a table header -->
                 <tr>
                     {{#each data.[0]}}
                     <th scope="col">
@@ -47,9 +48,9 @@
                 </tr>
             </thead>
 
-            {{!-- Body section --}}
+            <!-- Body section -->
             <tbody id='employeesTableBody'>
-                {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+                <!-- For each row of the rest of the table, print the id, fname, lname, startDate and position, in order -->
                 {{#each data}}
                 <tr>
                     <td>{{this.employeeID}}</td>

@@ -1,4 +1,4 @@
-<!-- ADD Form Content-- This will eventually need to submit somewhere for real-->
+<!-- Form to add a new material-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="addMaterialForm">
     <form class="m-3" name="add">
         <div class="row">
@@ -10,32 +10,34 @@
             
             <div class="col-4">
                 <label class="form-label">Title:</label>
-                <input type="text" id="addTitle" class="form-control mb-2" placeholder="The Cat in the Hat" required>
+                <input type="text" id="addTitle" class="form-control" placeholder="The Cat in the Hat" required>
+                <small class="form-text text-muted">Required</small>
             </div>
             <div class="col-4">
                 <label class="form-label">Author:</label>
-                <input type="text" id="addAuthor" class="form-control mb-2" placeholder="Dr. Seuss" >
+                <input type="text" id="addAuthor" class="form-control" placeholder="Dr. Seuss" >
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-3">
                 <label class="form-label">Medium:</label>
-                <input type="text" id="addMedium" class="form-control mb-2" placeholder="Book, DVD, Audiobook" required>
+                <input type="text" id="addMedium" class="form-control" placeholder="Book, DVD, Audiobook" required>
+                <small class="form-text text-muted">Required</small>
             </div>
             <div class="col-3">
                 <label class="form-label">Genre:</label>
-                <input type="text" id="addGenre" class="form-control mb-2" placeholder="Fiction, Non-fiction, etc.">
+                <input type="text" id="addGenre" class="form-control" placeholder="Fiction, Non-fiction, etc.">
             </div>
             <div class="col-2">
                 <label class="form-label">Total Copies:</label>
-                <input type="number" id="addTotalCopies" class="form-control mb-2" placeholder="##" required>
+                <input type="number" id="addTotalCopies" class="form-control" placeholder="##" required>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-2">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="addRestricted">
-                    <label class="form-check-label" for="restricted">Restricted?</label>
+                    <label class="form-check-label" for="restricted">Restricted</label>
                 </div>
             </div>
             <div class="col-2">
@@ -46,7 +48,7 @@
 </div>
 
 
-<!-- UPDATE Form Content- This will eventually need to submit somewhere for real-->
+<!-- Form to update a material-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="updateMaterialForm">
     <form class="m-3" name="add">
         <div class="row">
@@ -57,47 +59,50 @@
         <div class="row">
             <div class="col-4">
                 <label class="form-label">Material:</label>
-                <select id="update-id" class="form-control mb-2">
+                <select id="update-id" class="form-control">
                     <option value="">-- select one --</option>
                     {{#each data}}
                     <option value="{{this.materialID}}">{{this.materialID}} {{this.title}}</option>
                     {{/each}}
                 </select>
+                <small class="form-text text-muted">Required</small>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-4">
                 <label class="form-label">Title:</label>
-                <input type="text" id="update-title" class="form-control mb-2" placeholder="The Cat in the Hat" required>
+                <input type="text" id="update-title" class="form-control" placeholder="The Cat in the Hat" required>
+                <small class="form-text text-muted">Required</small>
             </div>
             <div class="col-4">
                 <label class="form-label">Author:</label>
-                <input type="text" id="update-author" class="form-control mb-2" placeholder="Dr. Seuss">
+                <input type="text" id="update-author" class="form-control" placeholder="Dr. Seuss">
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-3">
                 <label class="form-label">Medium:</label>
-                <input type="text" id="update-medium" class="form-control mb-2" placeholder="Book, DVD, Audiobook">
+                <input type="text" id="update-medium" class="form-control" placeholder="Book, DVD, Audiobook" required>
+                <small class="form-text text-muted">Required</small>
             </div>
             <div class="col-3">
                 <label class="form-label">Genre:</label>
-                <input type="text" id="update-genre" class="form-control mb-2" placeholder="Fiction, Non-fiction, etc.">
+                <input type="text" id="update-genre" class="form-control" placeholder="Fiction, Non-fiction, etc.">
             </div>
             <div class="col-2">
                 <label class="form-label">Available Copies:</label>
-                <input type="number" id="update-availableCopies" class="form-control mb-2" placeholder="##">
+                <input type="number" id="update-availableCopies" class="form-control" placeholder="##">
             </div>
             <div class="col-2">
                 <label class="form-label">Total Copies:</label>
-                <input type="number" id="update-totalCopies" class="form-control mb-2" placeholder="##">
+                <input type="number" id="update-totalCopies" class="form-control" placeholder="##">
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-2">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="update-restricted">
-                    <label class="form-check-label" for="restricted">Restricted?</label>
+                    <label class="form-check-label" for="restricted">Restricted</label>
                 </div>
             </div>
             <div class="col-2">
@@ -107,13 +112,14 @@
     </form>    
 </div>
 
+<!-- Materials Table -->
+
 <div class="row gy-4 justify-content-center">
     <div class="col-11">
         <table class="table" id="materialsTable">
-            {{!-- Header section --}}
+            <!-- Header section -->
             <thead>
-                {{!-- For just the first row, we print each key of the row object as a header cell so we
-                know what each column means when the page renders --}}
+                <!-- For the first row, print the name of eaach column (coming directly from the db), as a table header -->
                 <tr>
                     {{#each data.[0]}}
                     <th scope="col">
@@ -123,9 +129,9 @@
                 </tr>
             </thead>
 
-            {{!-- Body section --}}
+            <!-- Body section -->
             <tbody id="materialsTableBody">
-                {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+                <!-- For each row, print the id, author, title, medium, restricted bool, availableCopies, totalCopies, and genre, in order -->
                 {{#each data}}
                 <tr>
                     <td id='{{this.materialID}}ID'>{{this.materialID}}</td>

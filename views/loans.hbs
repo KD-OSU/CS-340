@@ -1,4 +1,4 @@
-<!-- 'ADD' Form Content-- This will eventually need to submit somewhere for real-->
+<!-- Add a new loan-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="addLoan ">
   <form class="m-3" name="add" id="addLoanForm">
       <div class="row">
@@ -9,23 +9,25 @@
       <div class="row">
           <div class="col-3">
               <label class="form-label">Material:</label>
-              <select id="addMaterial" class="form-control mb-3">
+              <select id="addMaterial" class="form-control" required>
                     {{#each materials}}
                     <option value="{{this.materialID}}">{{this.materialID}} {{this.title}}, {{this.author}}</option>
                     {{/each}}
                 </select>
+                <small class="form-text text-muted">Required</small>
           </div>
           <div class="col-3">
               <label class="form-label">Patron:</label>
-              <select id="addPatron" class="form-control mb-3">
+              <select id="addPatron" class="form-control" required>
                     {{#each patrons}}
                     <option value="{{this.patronID}}">{{this.patronID}} {{this.fName}} {{this.lName}}</option>
                     {{/each}}
                 </select>
+                <small class="form-text text-muted">Required</small>
           </div>
           <div class="col-3">
               <label class="form-label">Employee:</label>
-              <select id="addEmployee" class="form-control mb-3">
+              <select id="addEmployee" class="form-control">
                     <option value="">Select an employee (Optional)</option>
                     {{#each employees}}
                     <option value="{{this.employeeID}}">{{this.employeeID}} {{this.fName}} {{this.lName}}</option>
@@ -33,17 +35,19 @@
                 </select>
           </div>
         </div>
-      <div class="row">
+      <div class="row mt-3">
           <div class="col-3">
               <label class="form-label">checkout:</label>
-              <input type="date" id="addCheckout" class="form-control mb-2" required>
+              <input type="date" id="addCheckout" class="form-control" required>
+              <small class="form-text text-muted">Required</small>
           </div>
           <div class="col-3">
               <label class="form-label">due:</label>
-              <input type="date" id="addDue" class="form-control mb-2" required>
+              <input type="date" id="addDue" class="form-control" required>
+              <small class="form-text text-muted">Required</small>
           </div>
       </div>
-      <div class="row">
+      <div class="row mt-3">
           <div class="col-2">
               <button type="submit" class="btn btn-primary" id="submit">Submit</button>
           </div>
@@ -51,7 +55,7 @@
   </form>    
 </div>
 
-<!-- 'UPDATE' Form Content- This will eventually need to submit somewhere for real-->
+<!-- Update a loan-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="updateLoanForm">
   <form class="m-3" name="add">
       <div class="row">
@@ -62,34 +66,37 @@
       <div class="row">
         <div class="col-2">
           <label class="form-label">loanID:</label>
-          <select id="update-id" class="form-control mb-2">
+          <select id="update-id" class="form-control" required>
                     <option value="">-- select one --</option>
                     {{#each data}}
                     <option value="{{this.loanID}}">{{this.loanID}}</option>
                     {{/each}}
-                </select>
+            </select>
+            <small class="form-text text-muted">Required</small>
         </div>
       </div>
       <div class="row">
           <div class="col-3">
               <label class="form-label">MaterialID:</label>
-              <select id="update-materialID" class="form-control mb-3">
+              <select id="update-materialID" class="form-control" required>
                     {{#each materials}}
                     <option value="{{this.materialID}}">{{this.materialID}} {{this.title}}</option>
                     {{/each}}
                 </select>
+                <small class="form-text text-muted">Required</small>
           </div>
           <div class="col-3">
               <label class="form-label">PatronID:</label>
-              <select id="update-patronID" class="form-control mb-3">
+              <select id="update-patronID" class="form-control" required>
                     {{#each patrons}}
                     <option value="{{this.patronID}}">{{this.patronID}} {{this.fName}} {{this.lName}}</option>
                     {{/each}}
                 </select>
+                <small class="form-text text-muted">Required</small>
           </div>
           <div class="col-3">
               <label class="form-label">EmployeeID:</label>
-              <select id="update-employeeID" class="form-control mb-3">
+              <select id="update-employeeID" class="form-control">
                     <option value="">Select an employee (Optional)</option>
                     {{#each employees}}
                     <option value="{{this.employeeID}}">{{this.employeeID}} {{this.fName}} {{this.lName}}</option>
@@ -97,21 +104,23 @@
                 </select>
           </div>
         </div>
-      <div class="row">
+      <div class="row mt-3">
           <div class="col-3">
               <label class="form-label">checkout:</label>
-              <input type="date" id="update-checkout" class="form-control mb-2">
+              <input type="date" id="update-checkout" class="form-control" required>
+              <small class="form-text text-muted">Required</small>
           </div>
           <div class="col-3">
               <label class="form-label">due:</label>
-              <input type="date" id="update-due" class="form-control mb-2">
+              <input type="date" id="update-due" class="form-control" required>
+              <small class="form-text text-muted">Required</small>
           </div>
           <div class="col-3">
             <label class="form-label">returned:</label>
-            <input type="date" id="update-returned" class="form-control mb-2">
+            <input type="date" id="update-returned" class="form-control">
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-3">
           <div class="col-2">
               <button type="submit" class="btn btn-primary" id="update">Update</button>
           </div>
@@ -119,13 +128,14 @@
   </form>    
 </div>
 
+
+<!-- Loans Table -->
 <div class="row gy-4 justify-content-center">
     <div class="col-11">
         <table class="table" id="loansTable">
-            {{!-- Header section --}}
+            <!-- Header section -->
             <thead>
-                {{!-- For just the first row, we print each key of the row object as a header cell so we
-                know what each column means when the page renders --}}
+                <!-- For the first row, print the name of eaach column (coming directly from the db), as a table header -->
                 <tr>
                     {{#each data.[0]}}
                     <th scope="col">
@@ -137,7 +147,7 @@
 
             {{!-- Body section --}}
             <tbody id="loansTableBody">
-                {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+                {{!-- For each row, print the id, material ID, patron ID, Employee ID, checkout date, due date, and returned date, in order --}}
                 {{#each data}}
                 <tr>
                     <td id='{{this.loanID}}ID'>{{this.loanID}}</td>
