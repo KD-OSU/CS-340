@@ -9,23 +9,25 @@
         <div class="row">
             <div class="col-4">
                 <label class="form-label">Material:</label>
-                <select id="addMaterialID" class="form-control mb-2">
+                <select id="addMaterialID" class="form-control">
                     {{#each materials}}
                     <option value="{{this.materialID}}">{{this.materialID}} {{this.title}}, {{this.author}}</option>
                     {{/each}}
                 </select>
+                <small class="form-text text-muted">Required</small>
             </div>
             <div class="col-4">
                 <label class="form-label">Patron:</label>
-                <select id="addPatronID" class="form-control mb-2">
+                <select id="addPatronID" class="form-control">
                     {{#each patrons}}
                     <option value="{{this.patronID}}">{{this.patronID}} {{this.fName}} {{this.lName}}</option>
                     {{/each}}
                 </select>
+                <small class="form-text text-muted">Required</small>
             </div>
             <div class="col-4">
                 <label class="form-label">Employee:</label>
-                <select id="addEmployeeID" class="form-control mb-2">
+                <select id="addEmployeeID" class="form-control">
                     <option value="">Select an employee (Optional)</option>
                     {{#each employees}}
                     <option value="{{this.employeeID}}">{{this.employeeID}} {{this.fName}} {{this.lName}}</option>
@@ -33,7 +35,7 @@
                 </select>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-2">
                 <button type="submit" class="btn btn-primary" id="addHoldSubmit">Submit</button>
             </div>
@@ -41,7 +43,7 @@
     </form>    
 </div>
 
-<!-- 'UPDATE' Form Content-- This will eventually need to submit somewhere for real-->
+<!-- Update an existing hold-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="updateHoldForm">
   <form class="m-3" name="add">
       <div class="row">
@@ -52,34 +54,37 @@
       <div class="row">
         <div class="col-2">
           <label class="form-label">holdID:</label>
-          <select id="update-id" class="form-control mb-2">
+          <select id="update-id" class="form-control">
                     <option value="">-- select one --</option>
                     {{#each data}}
                     <option value="{{this.holdID}}">{{this.holdID}}</option>
                     {{/each}}
             </select>
+            <small class="form-text text-muted">Required</small>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-3">
           <div class="col-4">
               <label class="form-label">Material:</label>
-              <select id="update-materialID" class="form-control mb-2">
+              <select id="update-materialID" class="form-control">
                     {{#each materials}}
                     <option value="{{this.materialID}}">{{this.materialID}} {{this.title}}, {{this.author}}</option>
                     {{/each}}
                </select>
+               <small class="form-text text-muted">Required</small>
           </div>
           <div class="col-4">
               <label class="form-label">Patron:</label>
-              <select id="update-patronID" class="form-control mb-2">
+              <select id="update-patronID" class="form-control">
                     {{#each patrons}}
                     <option value="{{this.patronID}}">{{this.patronID}} {{this.fName}} {{this.lName}}</option>
                     {{/each}}
               </select>
+              <small class="form-text text-muted">Required</small>
           </div>
           <div class="col-4">
               <label class="form-label">Employee:</label>
-              <select id="update-employeeID" class="form-control mb-2">
+              <select id="update-employeeID" class="form-control">
                     <option value="">Select an employee (Optional)</option>
                     {{#each employees}}
                     <option value="{{this.employeeID}}">{{this.employeeID}} {{this.fName}} {{this.lName}}</option>
@@ -87,13 +92,14 @@
                </select>
           </div>
         </div>
-      <div class="row">
+      <div class="row mt-3">
           <div class="col-4">
               <label class="form-label">created:</label>
-              <input type="datetime-local" id="update-created" class="form-control mb-2" step='1'>
+              <input type="datetime-local" id="update-created" class="form-control" step='1'>
+              <small class="form-text text-muted">Required</small>
           </div>
       </div>
-      <div class="row">
+      <div class="row mt-3">
           <div class="col-2">
               <button type="submit" class="btn btn-primary" id="update">Update</button>
           </div>
@@ -101,13 +107,14 @@
   </form>    
 </div>
 
+
+<!-- Holds Table -->
 <div class="row gy-4 justify-content-center">
     <div class="col-11">
         <table class="table" id="holdsTable">
-            {{!-- Header section --}}
+            <!-- Header section -->
             <thead>
-                {{!-- For just the first row, we print each key of the row object as a header cell so we
-                know what each column means when the page renders --}}
+                <!-- For the first row, print the name of eaach column (coming directly from the db), as a table header -->
                 <tr>
                     {{#each data.[0]}}
                     <th scope="col">
@@ -118,9 +125,9 @@
                 </tr>
             </thead>
 
-            {{!-- Body section --}}
+            <!-- Body section -->
             <tbody id="holdsTableBody">
-                {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+                <!-- For each row, print the id, created date, material id, patron id, and employee id, in order -->
                 {{#each data}}
                 <tr id="{{this.holdID}}">
                     <td id='{{this.holdID}}ID'>{{this.holdID}}</td>

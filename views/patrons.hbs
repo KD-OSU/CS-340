@@ -1,13 +1,12 @@
-
-
-<!-- Search Form Content-- This will eventually need to submit somewhere for real-->
+<!-- Form to search for a patron-->
 <div class="border container w-50 bg-light align-items-center gy-5">
   <form class="m-3" id="searchPatron" method='GET' action='/patrons'>
     <div class="row">
       <div class="col">
         <h5 class="text-left">Search for a patron</h5>
+        <small class="form-text text-muted">Searches for patrons by first OR last name</small>
         <div class="col-8">
-          <input type="text" id="searchName" class="form-control mb-2" name="name" placeholder="search by name">
+          <input type="text" id="searchName" class="form-control " name="name" placeholder="search by name">
         </div>
         <div class="col-4">
           <button type="submit" class="btn btn-primary" id="search">Search</button>
@@ -29,24 +28,26 @@
         <div class="row">
             <div class="col-4">
                 <label class="form-label">First Name:</label>
-                <input type="text" id="fName" class="form-control mb-2" placeholder="Jane" required>
+                <input type="text" id="fName" class="form-control" placeholder="Jane" required>
+                <small class="form-text text-muted">Required</small>
             </div>
             <div class="col-4">
                 <label class="form-label">Last Name:</label>
-                <input type="text" id="lName" class="form-control mb-2" placeholder="Doe" >
+                <input type="text" id="lName" class="form-control" placeholder="Doe" >
             </div>
             <div class="col-3">
                 <label class="form-label">Birth Date:</label>
-                <input type="date" id="birthDate" class="form-control mb-2" required>
+                <input type="date" id="birthDate" class="form-control" required>
+                <small class="form-text text-muted">Required</small>
             </div>
-            <div class="col-2">
+            <div class="col-2 gy-3">
                 <button type="submit" class="btn btn-primary" id="addPatronSubmit">Submit</button>
             </div>
         </div>
     </form>
 </div>
 
-<!-- Update Form Content-- This will eventually need to submit somewhere for real-->
+<!-- Form to update a patron-->
 <div class="border container w-75 bg-light align-items-center gy-5">
   <form class="m-3" name="add" id="updatePatronForm">
       <div class="row">
@@ -57,45 +58,48 @@
       <div class="row">
         <div class="col-3">
           <label class="form-label">Patron:</label>
-          <select id="update-id" class="form-control mb-2">
+          <select id="update-id" class="form-control">
                     <option value="">-- select one --</option>
                     {{#each data}}
                     <option value="{{this.patronID}}">{{this.patronID}} {{this.fName}}, {{this.lName}}</option>
                     {{/each}}
-                </select>
+          </select>
+          <small class="form-text text-muted">Required</small>
         </div>
           <div class="col-4">
               <label class="form-label">First Name:</label>
-              <input type="text" id="update-fName" class="form-control mb-2" value="" placeholder="Jane">
+              <input type="text" id="update-fName" class="form-control" value="" placeholder="Jane">
+              <small class="form-text text-muted">Required</small>
           </div>
           <div class="col-4">
               <label class="form-label">Last Name:</label>
-              <input type="text" id="update-lName" class="form-control mb-2" value="" placeholder="Doe" >
+              <input type="text" id="update-lName" class="form-control" value="" placeholder="Doe" >
           </div>
-          <div class="col-3">
+          <div class="col-3 gy-3">
               <label class="form-label">Birth Date:</label>
-              <input type="date" id="update-birthDate" class="form-control mb-2" value="" >
+              <input type="date" id="update-birthDate" class="form-control" value="" >
+              <small class="form-text text-muted">Required</small>
           </div>
-          <div class="col-1">
+          <div class="col-1 gy-3">
             <label class="form-check-label" for="restricted">Flagged:</label>
             <input class="form-check-input" type="checkbox" id="update-flagged">
         </div>
       </div>
       <div class="row">
-          <div class="col-2">
+          <div class="col-2 gy-3">
               <button type="submit" class="btn btn-primary" id="update">Update</button>
           </div>
       </div>
   </form>
 </div>
 
+<!-- Patrons table -->
 <div class="row gy-4 justify-content-center">
     <div class="col-11">
         <table class="table" id="patronsTable">
-            {{!-- Header section --}}
+            <!-- Header section -->
             <thead>
-                {{!-- For just the first row, we print each key of the row object as a header cell so we
-                know what each column means when the page renders --}}
+                <!-- For the first row, print the name of eaach column (coming directly from the db), as a table header -->
                 <tr>
                     {{#each data.[0]}}
                     <th scope="col">
@@ -105,9 +109,9 @@
                 </tr>
             </thead>
 
-            {{!-- Body section --}}
+            <!-- Body section -->
             <tbody id="patronsTableBody">
-                {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+                <!-- For each row, print the id, fname, lname, birthDate and flagged boolean, in order -->
                 {{#each data}}
                 <tr>
                     <td id='{{this.patronID}}ID'>{{this.patronID}}</td>
