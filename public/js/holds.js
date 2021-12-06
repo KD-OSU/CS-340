@@ -175,13 +175,19 @@ addRowToTable = (data) => {
     deleteButton.innerText = "Delete";
     bindDeleteButton(deleteButton);
 
-    // Fill cells with data
+    // Fill cells with data, and set an ID on each of the cells
     idCell.innerText = newRow.holdID;
+    idCell.id = `${newRow.holdID}ID`
     createdCell.innerText = toLocalDateTime(newRow.created);
+    createdCell.id = `${newRow.holdID}created`
     materialCell.innerText = newRow.materialID;
+    materialCell.id = `${newRow.holdID}materialID`
     patronCell.innerText = newRow.patronID
+    patronCell.id = `${newRow.holdID}patronID`
     employeeCell.innerText = newRow.employeeID;
+    employeeCell.id = `${newRow.holdID}employeeID`
     deleteCell.className = "delete";
+    deleteCell.deleteId = `${newRow.holdID}`
     deleteCell.appendChild(deleteButton);
 
     
@@ -195,6 +201,9 @@ addRowToTable = (data) => {
 
     // Add row to table in DOM
     currentTable.appendChild(row);
+
+    // Update the options available in the 'update' selector
+    updateSelector(newRow.holdID)
 }
 
 

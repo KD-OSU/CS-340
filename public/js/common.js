@@ -35,7 +35,7 @@ function toLocalDateTime(dateTime){
 /**
  * Converts a date string from "MM/DD/YYYY" to "YYYY-MM-DD" format
  *  @param {string} inDate - date string in format "MM/DD/YYYY"
- * @returns {string} - date string in format "YYYY-MM-DD"
+ *  @returns {string} - date string in format "YYYY-MM-DD"
  */
 function toDateFormat(inDate){
     // return empty string for incomplete date.
@@ -50,7 +50,7 @@ function toDateFormat(inDate){
 /**
  * Converts a datetime string from "MM/DD/YYYY 07:17:00 AM" to "yyyy-MM-ddThh:mm:ss" format
  *  @param {string} inDate - date string in format "MM/DD/YYYY"
- * @returns {string} - date string in format "YYYY-MM-DD"
+ *  @returns {string} - date string in format "YYYY-MM-DD"
  */
  function toDateTimeFormat(inDate){
     // return empty string for incomplete date.
@@ -74,7 +74,7 @@ function toDateFormat(inDate){
  * Convert an hour integer from 12 hour to string 24 hour. 
  *  @param {int} hour - hour integer in 12 hour format
  *  @param {str} ampm - str 'a' for am and 'p' for pm.
- * @returns {str} - hour string in format "HH"
+ *  @returns {str} - hour string in format "HH"
  */
 function to24Hour(hour, ampm){
     // handle noon and midnight
@@ -100,4 +100,21 @@ function to24Hour(hour, ampm){
         }
     }
     return result;
+}
+/**
+ * Updates the selector of an update form with a new option 
+ * @param {int} ID - ID to add to the selector
+ * @param {str} extra - Any extra information to add to the selector (name, title, etc.)
+ */
+function updateSelector(ID, extra){
+    let selector = document.getElementById("update-id")
+    let option = document.createElement("option");
+    option.value = ID
+    option.innerText = ID
+    console.log(extra)
+    if (extra) {
+        option.innerText += ' '
+        option.innerText += extra
+    }
+    selector.appendChild(option)   
 }
