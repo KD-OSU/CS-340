@@ -1,7 +1,11 @@
 // employees.js
+// Client-side javascript for manipulating the DOM and making http requests from the Employees page
 
-// Client-side javascript for manipulating the DOM and making http requests from the employees page
 
+/**
+ * Send request to Add Employee when submit button pressed
+ * on addEmployeeForm.
+ */
 let addPersonForm = document.getElementById('addEmployeeForm');
 
 addPersonForm.addEventListener("submit", function(e) {
@@ -52,11 +56,12 @@ addPersonForm.addEventListener("submit", function(e) {
 
     // Send request and wait for response
     xhttp.send(JSON.stringify(data));
-
 })
 
-// Add row to table in front-end
-// I think this can be a common js function that we can use use in all files if we create a loop to deal with the data
+/**
+ * Take response data from an Add Employee request.
+ * Add the new Employee's data as a new row on the table being displayed.
+ */
 addRowToTable = (data) => {
     
     let currentTable = document.getElementById("employeesTableBody"); // Get the current table body

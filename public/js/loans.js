@@ -1,9 +1,11 @@
 // loans.js
-
 // Client-side javascript for manipulating the DOM and making http requests from the loans page
 
 
-// Pre-populate the update form when loanID is selected
+/**
+ * Pre-populate the updateLoanForm when a loanID is selected
+ * from the drop-down menu.
+ */
 let loanSelector =document.getElementById('update-id');
 
 loanSelector.addEventListener('change', function(){
@@ -35,7 +37,10 @@ loanSelector.addEventListener('change', function(){
     
 });
 
-// Updating a loan
+/**
+ * Send request to Update a Loan when the submit button is pressed
+ * on the updateLoanForm.
+ */
 let updateLoanForm = document.getElementById('updateLoanForm');
 
 updateLoanForm.addEventListener("submit", function(e) {
@@ -90,6 +95,10 @@ updateLoanForm.addEventListener("submit", function(e) {
     xhttp.send(JSON.stringify(data));
 })
 
+/**
+ * Take response data from an Update Loan request.
+ * Update the data in the corresponding row in the table being displayed.
+ */
 updateTableRow = (data) => {
     
     let updatedRow = JSON.parse(data)[0];               // Get updated results from db
@@ -114,13 +123,11 @@ updateTableRow = (data) => {
     returnedCell.innerText = toLocalDate(updatedRow.returned);
 }
 
-/* 
 
-ADD ROW FUNCTIONALITY
-
-*/
-
-// Make a post request and add row when addHoldFrom is submitted
+/**
+ * Send an Add Loan request when the submit button is pressed
+ * on the addLoanForm.
+ */
 let addLoanForm = document.getElementById('addLoanForm');
 
 addLoanForm.addEventListener("submit", function(e) {
@@ -172,8 +179,10 @@ addLoanForm.addEventListener("submit", function(e) {
 })
 
 
-// Add row to table in front-end
-// I think this can be a common js function that we can use use in all files if we create a loop to deal with the data
+/**
+ * Take response data from an Add Loan request.
+ * Add the new Loan's data as a new row on the table being displayed.
+ */
 addRowToTable = (data) => {
     
     let currentTable = document.getElementById("loansTableBody");   // Get the current table body

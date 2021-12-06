@@ -1,8 +1,11 @@
 // patrons.js
-
 // Client-side javascript for manipulating the DOM and making http requests from the patrons page
 
-// Pre-populate the update form when patronID is selected
+
+/**
+ * Pre-populate the updatePatronForm when a patronID is selected
+ * from the drop-down menu.
+ */ 
 let patronSelector =document.getElementById('update-id');
 
 patronSelector.addEventListener('change', function(){
@@ -31,7 +34,11 @@ patronSelector.addEventListener('change', function(){
 
 });
 
-// Updating a patron
+
+/**
+ * Send request to Update a Patron when the submit button is pressed
+ * on the updatePatronForm.
+ */
 let updatePatronForm = document.getElementById('updatePatronForm');
                                document.getElementById
 
@@ -87,6 +94,11 @@ updatePatronForm.addEventListener("submit", function(e) {
     xhttp.send(JSON.stringify(data));
 })
 
+
+/**
+ * Take response data from an Update Patron request.
+ * Update the data in the corresponding row in the table being displayed.
+ */
 updateTableRow = (data) => {
     
     let updatedRow = JSON.parse(data)[0];               // Get updated results from db
@@ -107,8 +119,10 @@ updateTableRow = (data) => {
 }
 
 
-// Adding a patron
-
+/**
+ * Send an Add Patron request when the submit button is pressed
+ * on the addPatronForm.
+ */
 let addPatronForm = document.getElementById('addPatronForm');
 
 addPatronForm.addEventListener("submit", function(e) {
@@ -158,8 +172,11 @@ addPatronForm.addEventListener("submit", function(e) {
 
 })
 
-// Add row to table in front-end
-// I think this can be a common js function that we can use use in all files if we create a loop to deal with the data
+
+/**
+ * Take response data from an Add Patron request.
+ * Add the new Patron's data as a new row on the table being displayed.
+ */
 addRowToTable = (data) => {
     
     let currentTable = document.getElementById("patronsTableBody"); // Get the current table body

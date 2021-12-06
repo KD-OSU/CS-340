@@ -1,9 +1,11 @@
 // holds.js
-
 // Client-side javascript for manipulating the DOM and making http requests from the holds page
 
 
-// Pre-populate the update form when loanID is selected
+/**
+ * Pre-populate the updateHoldForm when a holdID is selected
+ * from the drop-down menu.
+ */ 
 let holdSelector =document.getElementById('update-id');
 
 holdSelector.addEventListener('change', function(){
@@ -29,7 +31,11 @@ holdSelector.addEventListener('change', function(){
     
 });
 
-// Updating a hold
+
+/**
+ * Send request to Update a Hold when the submit button is pressed
+ * on the updateHoldForm.
+ */
 let updateHoldForm = document.getElementById('updateHoldForm');
 
 updateHoldForm.addEventListener("submit", function(e) {
@@ -78,6 +84,11 @@ updateHoldForm.addEventListener("submit", function(e) {
     xhttp.send(JSON.stringify(data));
 })
 
+
+/**
+ * Take response data from an Update Hold request.
+ * Update the data in the corresponding row in the table being displayed.
+ */
 updateTableRow = (data) => {
     
     let updatedRow = JSON.parse(data)[0];               // Get updated results from db
@@ -96,13 +107,11 @@ updateTableRow = (data) => {
     createdCell.innerText = toLocalDateTime(updatedRow.created);
 }
 
-/* 
 
-ADD ROW FUNCTIONALITY
-
-*/
-
-// Make a post request and add row when addHoldFrom is submitted
+/**
+ * Send an Add Hold request when the submit button is pressed
+ * on the addHoldForm.
+ */
 let addHoldForm = document.getElementById('addHoldForm');
 
 addHoldForm.addEventListener("submit", function(e) {
@@ -148,8 +157,10 @@ addHoldForm.addEventListener("submit", function(e) {
 })
 
 
-// Add row to table in front-end
-// I think this can be a common js function that we can use use in all files if we create a loop to deal with the data
+/**
+ * Take response data from an Add Hold request.
+ * Add the new Hold's data as a new row on the table being displayed.
+ */
 addRowToTable = (data) => {
     
     let currentTable = document.getElementById("holdsTableBody");   // Get the current table body
@@ -167,13 +178,13 @@ addRowToTable = (data) => {
     
     row.id = newRow.holdID;
 
-    // Create delete button
+    // Create delete button for row
     let deleteButton = document.createElement("button");
     deleteButton.type="button";
     deleteButton.className = "btn btn-outline-danger";
     deleteButton.setAttribute("deleteId", newRow.holdID);
     deleteButton.innerText = "Delete";
-    bindDeleteButton(deleteButton);
+    bindDeleteButton(deleteButton);  // bind 'delete' functionality to new button
 
     // Fill cells with data
     idCell.innerText = newRow.holdID;
@@ -198,15 +209,11 @@ addRowToTable = (data) => {
 }
 
 
-
-/*
-
-DELETE ROW FUNCTIONALITY
-
-*/
-
-// Functions to bind all the delete buttons
-
+/**
+ * Send a Delete Hold request when the Delete button is pressed
+ * in a Hold's row on the table.
+ * Binds the 'delete' functionality to all Delete buttons on the table.
+ */
 document.addEventListener("DOMContentLoaded", bindDeletes);
 
 function bindDeleteButton(deleteButton){
@@ -235,6 +242,11 @@ function bindDeletes() {
 });
 }
 
+
+/**
+ * Take the deleteId for a row on the Hold table.
+ * Remove that row from the table being displayed.
+ */
 function deleteRow(deleteId) {
     let row = document.getElementById(deleteId)
     row.parentNode.removeChild(row);

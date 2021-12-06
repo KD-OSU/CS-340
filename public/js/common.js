@@ -1,6 +1,6 @@
-// common.js
-
+// Common Functions used by multiple web pages.
 // Client-side javascript relevant to multiple files
+
 
 /**
  * Converts a date from a MySQL query into a human readable date string for presenting in the front-end

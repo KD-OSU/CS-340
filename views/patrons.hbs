@@ -1,4 +1,6 @@
-<!-- Form to search for a patron-->
+<!-- Patron page HTML view -->
+
+<!-- Form to Search for a Patron-->
 <div class="border container w-50 bg-light align-items-center gy-5">
   <form class="m-3" id="searchPatron" method='GET' action='/patrons'>
     <div class="row">
@@ -17,7 +19,7 @@
   </form>
 </div>
 
-<!-- Form to add a new patron -->
+<!-- Form to Add a new Patron -->
 <div class="border container w-75 bg-light align-items-center gy-5">
     <form class="m-3" name="add" id="addPatronForm">
         <div class="row">
@@ -47,7 +49,7 @@
     </form>
 </div>
 
-<!-- Form to update a patron-->
+<!-- Form to Update a Patron-->
 <div class="border container w-75 bg-light align-items-center gy-5">
   <form class="m-3" name="add" id="updatePatronForm">
       <div class="row">
@@ -93,11 +95,11 @@
   </form>
 </div>
 
-<!-- Patrons table -->
+<!-- Table to Display Patrons -->
 <div class="row gy-4 justify-content-center">
     <div class="col-11">
         <table class="table" id="patronsTable">
-            <!-- Header section -->
+            <!-- T-Header section -->
             <thead>
                 <!-- For the first row, print the name of eaach column (coming directly from the db), as a table header -->
                 <tr>
@@ -109,7 +111,7 @@
                 </tr>
             </thead>
 
-            <!-- Body section -->
+            <!-- T-Body section -->
             <tbody id="patronsTableBody">
                 <!-- For each row, print the id, fname, lname, birthDate and flagged boolean, in order -->
                 {{#each data}}
