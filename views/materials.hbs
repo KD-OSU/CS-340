@@ -1,4 +1,6 @@
-<!-- Form to add a new material-->
+<!-- Material page HTML view -->
+
+<!-- Form to Add a new Material-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="addMaterialForm">
     <form class="m-3" name="add">
         <div class="row">
@@ -48,7 +50,7 @@
 </div>
 
 
-<!-- Form to update a material-->
+<!-- Form to Update a Material-->
 <div class="border container w-75 bg-light align-items-center gy-5" id="updateMaterialForm">
     <form class="m-3" name="add">
         <div class="row">
@@ -112,14 +114,13 @@
     </form>    
 </div>
 
-<!-- Materials Table -->
-
+<!-- Table to display Materials -->
 <div class="row gy-4 justify-content-center">
     <div class="col-11">
         <table class="table" id="materialsTable">
-            <!-- Header section -->
+            <!-- T-Header section -->
             <thead>
-                <!-- For the first row, print the name of eaach column (coming directly from the db), as a table header -->
+                <!-- For the first row, print the name of each column (coming directly from the db), as a table header -->
                 <tr>
                     {{#each data.[0]}}
                     <th scope="col">
@@ -129,7 +130,7 @@
                 </tr>
             </thead>
 
-            <!-- Body section -->
+            <!-- T-Body section -->
             <tbody id="materialsTableBody">
                 <!-- For each row, print the id, author, title, medium, restricted bool, availableCopies, totalCopies, and genre, in order -->
                 {{#each data}}
