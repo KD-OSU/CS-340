@@ -10,7 +10,7 @@ let loanSelector =document.getElementById('update-id');
 
 loanSelector.addEventListener('change', function(){
     selectedID = loanSelector.value;
-    
+    console.log(selectedID)
     // get the existing data from relevant table cells 
     selectedMaterialID = document.getElementById(`${selectedID}materialID`).innerText;
     selectedPatronID = document.getElementById(`${selectedID}patronID`).innerText;
@@ -201,14 +201,21 @@ addRowToTable = (data) => {
 
     row.id = newRow.holdID;
 
-    // Fill cells with data
+    // Fill cells with data, and set an ID on each of the cells
     idCell.innerText = newRow.loanID;
+    idCell.id = `${newRow.loanID}ID`;
     materialCell.innerText = newRow.materialID;
-    patronCell.innerText = newRow.patronID
+    materialCell.id = `${newRow.loanID}materialID`;
+    patronCell.innerText = newRow.patronID;
+    patronCell.id = `${newRow.loanID}patronID`;
     employeeCell.innerText = newRow.employeeID;
+    employeeCell.id = `${newRow.loanID}employeeID`;
     checkoutCell.innerText = toLocalDate(newRow.checkout);
+    checkoutCell.id = `${newRow.loanID}checkout`;
     dueCell.innerText = toLocalDate(newRow.due);
+    dueCell.id = `${newRow.loanID}due`;
     returnedCell.innerText = "";
+    returnedCell.id = `${newRow.loanID}returned`;
     
     // Add the cells to the row in the DOM
     row.appendChild(idCell);
@@ -221,5 +228,7 @@ addRowToTable = (data) => {
 
     // Add row to table in DOM
     currentTable.appendChild(row);
-}
 
+    // Update the options available in the 'update' selector
+    updateSelector(newRow.loanID)
+}

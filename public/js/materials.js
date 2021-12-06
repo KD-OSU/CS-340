@@ -218,13 +218,21 @@ addRowToTable = (data) => {
 
     // Fill cells with data
     idCell.innerText = newRow.materialID;
+    idCell.id = `${newRow.materialID}ID`;
     authorCell.innerText = newRow.author;
+    authorCell.id = `${newRow.materialID}author`;
     titleCell.innerText = newRow.title;
+    titleCell.id = `${newRow.materialID}title`;
     mediumCell.innerText = newRow.medium;
+    mediumCell.id = `${newRow.materialID}medium`;
     restrictedCell.innerText = newRow.restricted;
+    restrictedCell.id = `${newRow.materialID}restricted`;
     availableCopiesCell.innerText = newRow.availableCopies;
+    availableCopiesCell.id = `${newRow.materialID}availableCopies`;
     totalCopiesCell.innerText = newRow.totalCopies;
+    totalCopiesCell.id = `${newRow.materialID}totalCopies`;
     genreCell.innerText = newRow.genre;
+    genreCell.id = `${newRow.materialID}genre`;
     
     // Add the cells to the row in the DOM
     row.appendChild(idCell);
@@ -238,4 +246,7 @@ addRowToTable = (data) => {
 
     // Add row to table in DOM
     currentTable.appendChild(row);
+    
+    // Update the options available in the 'update' selector
+    updateSelector(newRow.materialID, newRow.title)
 }

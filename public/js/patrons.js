@@ -194,10 +194,15 @@ addRowToTable = (data) => {
 
     // Fill cells with data
     idCell.innerText = newRow.patronID;
+    idCell.id = `${newRow.patronID}ID`;
     firstNameCell.innerText = newRow.fName;
+    firstNameCell.id = `${newRow.patronID}fName`;
     lastNameCell.innerText = newRow.lName;
+    lastNameCell.id = `${newRow.patronID}lName`;
     birthDateCell.innerText = toLocalDate(newRow.birthDate);
+    birthDateCell.id = `${newRow.patronID}birthDate`;
     flaggedCell.innerText = newRow.flagged;
+    flaggedCell.id = `${newRow.patronID}flagged`;
 
     // Add the cells to the row in the DOM
     row.appendChild(idCell);
@@ -207,5 +212,11 @@ addRowToTable = (data) => {
     row.appendChild(flaggedCell);
 
     // Add row to table in DOM
-    currentTable.appendChild(row);
+    currentTable.appendChild(row); 
+    
+    // Update the options available in the 'update' selector
+
+    let selectorName = `${newRow.fName}, ${newRow.lName}`;
+
+    updateSelector(newRow.patronID, selectorName);
 }
